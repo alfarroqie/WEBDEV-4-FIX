@@ -36,9 +36,6 @@ db.news.belongsToMany(db.categorys, {
   through: "newsCategory"
 });
 
-// one to many user and news 
-db.users.hasMany(db.news);
-db.news.belongsTo(db.users);
 
 module.exports = db;
 

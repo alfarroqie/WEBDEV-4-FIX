@@ -16,13 +16,13 @@ exports.create = (req, res) => {
 
   // Create a News
   const news = {
+    author: req.body.author,
     title: req.body.title,
     publish: req.body.publish,
     content: req.body.content,
     locationLink: req.body.locationLink, 
     views: 0,
-    pictLink: req.body.pictLink,
-    userId: req.body.userId
+    pictLink: req.body.pictLink
   };
 
   // Save nNews in the database

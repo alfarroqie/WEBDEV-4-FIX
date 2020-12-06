@@ -1,10 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
     const News = sequelize.define("news", {
+      author: {
+        type: Sequelize.STRING
+      },
       title: {
         type: Sequelize.STRING
       },
       publish: {
-        type: Sequelize.DATE(6)
+        type: Sequelize.BOOLEAN
       },
       content: {
         type: Sequelize.TEXT
