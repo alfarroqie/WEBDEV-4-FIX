@@ -1,197 +1,53 @@
 <template>
-<body>
-<div class="wrapper">
-    <div class="main_content">
-     <div class="info">
-		<div>
-			<form action="cms_daftarArtikel.html"  method="post">
-				<div class="form-group md-form mt-0 pt-1 waves-light">
-					<div class="col-25">
-					<label for="judul">Judul</label>
-					</div>
-					<div class="col-75">
-					<input type="text" class="form-judul" placeholder="Judul">
-					</div>
-				</div>
-				<div class="form-group md-form mt-0 pt-1 waves-light">
-					<div class="col-25">
-					<label for="kategori">Kategori</label>
-					</div>
-					<div class="col-75">
-					<input type="text" class="form-kategori" placeholder="Kategori">
-					</div>
-				</div>
-				<div class="form-group md-form mt-0 pt-1 waves-light">
-					<div class="col-25">
-					<label>Konten</label>
-					</div>
-					<div class="col-75">
-					<textarea id ="judul-konten" class="form-control" placeholder="Konten" style= "height:200px"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" 
-					data-dismiss="modal">Close</button>
-					<input type="submit" class="btn btn-primary"
-					value="Submit"/>
-				</div>
-			</form>
-		</div>
+<div id="app">
+<div class="container">
+  <h2>Post Artikel</h2>
+  <div class="row">
+    <div class="col-sm">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-sm-2">Penulis</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="author" placeholder="Ketikkan penulis artikel" name="author">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Judul</label>
+          <div class="col-sm-10">
+            <input class="form-control" id="title" placeholder="Ketikkan judul artikel" name="title">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Konten</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" rows=10 id="content"></textarea>
+          </div>
+        </div>
+      </form>
     </div>
+      <!-- <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor> -->
   </div>
- </div>
- </body>
+</div>
+</div>
 </template>
 
+
 <script>
-import "bootstrap/dist/css/bootstrap.css";
-export default {};
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+export default {
+    // name: "app",
+    //       data() {
+    //           return {
+    //               editor: ClassicEditor,
+    //               editorData: '<p>Rich-text editor content.</p>',
+    //               editorConfig: {
+    //                   // The configuration of the rich-text editor.
+    //               }
+    //           };
+    //       }
+}
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-body{
-   background-color: #fff;
-}
-
-.wrapper{
-  display: flex;
-  position: relative;
-}
-
-.wrapper .sidebar{
-  width: 200px;
-  height: 100%;
-  background: #abcabd;
-  padding: 30px 0px;
-  position: fixed;
-}
-
-.wrapper .sidebar h2{
-  color: #000000;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.wrapper .sidebar ul li{
-  padding: 15px;
-  border-bottom: 1px solid #bdb8d7;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.wrapper .sidebar ul li a{
-  color: #000000;
-  display: block;
-}
-
-.wrapper .sidebar ul li a .fas{
-  width: 25px;
-}
-
-.wrapper .sidebar ul li:hover{
-  background-color: #594f8d;
-}
-
-.wrapper .sidebar ul li:hover a{
-  color: #fff;
-}
-
-
-.wrapper .main_content{
-  width: 100%;
-  margin-left: 200px;
-}
-
-.wrapper .main_content .header{
-	font-size: 40px;
-  padding: 20px;
-  background: #fff;
-  color: #717171;
-  border-bottom: 1px solid #e0e4e8;
-}
-.wrapper .main_content .header a{
-	float: right;
-	font-size : 20px;
-}
-
-.wrapper .main_content .header i{
-	float: right;
-}
-.wrapper .main_content .header .search{
-	padding-left : -70px;
-	padding-top: 30px;
-}
-.wrapper .main_content .header .search .search-box{
-	float:right;
-	width: 20%;
-
-}
-.wrapper .main_content .info{
-  margin: 20px;
-  color: #000000;
-  line-height: 25px;
-}
-
-/*
-.wrapper .main_content .info{
-    border:"1";
-    cellpadding:"5"
-}*/
-
-.wrapper .main_content .info div{
-  margin-bottom: 20px;
-  font-size: 20px;
-}
-/*
-.wrapper .main_content .info .judul-form{
-  margin-right: 5px;
-  font-size: 10px;
-  border: none;
-  cursor: pointer;
-}
-*/
-.col-25 {
-  float: left;
-  width: 10%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 90%;
-  margin-top: 6px;
-}
-.wrapper .main_content .info .judul-form .form-control{
-  font-size: 17px;
-}
-.table1 {
-    color: #232323;
-    border-collapse: collapse;
-}
-
-.table1, th, td {
-    border: 1px solid #999;
-    padding: 8px 20px;
-}
-.btn-table {
-	float: right;
-
-}
-@media (max-height: 500px){
-  .social_media{
-    display: none !important;
-  }
-}
-</style>
+<!-- <script src="../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
+<script src="../node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js"></script>
+-->
