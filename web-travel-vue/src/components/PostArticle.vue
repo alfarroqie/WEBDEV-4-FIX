@@ -1,31 +1,30 @@
 <template>
 <div id="app">
 <div class="container">
-  <h2>Post Artikel</h2>
+  <h2 align="center">Post Artikel</h2>
   <div class="row">
     <div class="col-sm">
       <form class="form-horizontal">
         <div class="form-group">
+          <div class="row">
           <label class="control-label col-sm-2">Penulis</label>
           <div class="col-sm-10">
-            <input class="form-control" id="author" placeholder="Ketikkan penulis artikel" name="author">
+            <input v-model="author" class="form-control" placeholder="Ketikkan penulis artikel">
+          </div>
           </div>
         </div>
         <div class="form-group">
+          <div class="row">
           <label class="control-label col-sm-2">Judul</label>
           <div class="col-sm-10">
-            <input class="form-control" id="title" placeholder="Ketikkan judul artikel" name="title">
+            <input v-model="title" class="form-control" placeholder="Ketikkan judul artikel">
           </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2">Konten</label>
-          <div class="col-sm-10">
-            <textarea class="form-control" rows=10 id="content"></textarea>
           </div>
         </div>
       </form>
+        <vue-editor v-model="content"></vue-editor>
+        <button type="button" class="btn btn-success" @click="addNews">Post</button>
     </div>
-      <!-- <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor> -->
   </div>
 </div>
 </div>
@@ -33,21 +32,37 @@
 
 
 <script>
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import { VueEditor } from "vue2-editor";
+import NewsDataService from "../services/NewsDataService";
 export default {
-    // name: "app",
-    //       data() {
-    //           return {
-    //               editor: ClassicEditor,
-    //               editorData: '<p>Rich-text editor content.</p>',
-    //               editorConfig: {
-    //                   // The configuration of the rich-text editor.
-    //               }
-    //           };
-    //       }
-}
+  components: {
+    VueEditor
+  },
+
+  data() {
+    return {
+      author: "",
+      title: "",
+      content: "",
+    };
+  },
+  methods: {
+    addNews: function() {
+      const news = {
+        author: this.author,
+        title: this.title,
+        content: this.content,
+        publish: false
+      }
+      NewsDataService.create(news)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
+  }
+};
 </script>
-<!-- <script src="../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
-<script src="../node_modules/@ckeditor/ckeditor5-vue/dist/ckeditor.js"></script>
--->
+
