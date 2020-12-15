@@ -57,7 +57,7 @@
         categoryName : "",
         isLocation : false,
         isLoading : false,
-        isError : true,
+        isError : false,
 
       }
     },
