@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper">
+<v-app>
+    <div class="wrapper">
     <div class="sidebar">
       <div class="logo">
         <img
@@ -44,6 +45,7 @@
        <router-view></router-view>
     </div>
   </div>
+</v-app>
 </template>
 
 <script>
@@ -76,13 +78,11 @@ export default{
     }
   },
   mounted(){
-
   }
 }
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-
 *{
   margin: 0;
   padding: 0;
@@ -91,16 +91,13 @@ export default{
   text-decoration: none;
   font-family: 'Josefin Sans', sans-serif;
 }
-
 body{
    background-color: #fff;
 }
-
 .wrapper{
   display: flex;
   position: relative;
 }
-
 .wrapper .sidebar{
   width: 200px;
   height: 100%;
@@ -108,45 +105,37 @@ body{
   padding: 30px 0px;
   position: fixed;
 }
-
 .wrapper .sidebar h2{
   color: #000000;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 30px;
 }
-
 .wrapper .sidebar ul li{
   padding: 15px;
   border-bottom: 1px solid #bdb8d7;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   border-top: 1px solid rgba(255,255,255,0.05);
 }
-
 .wrapper .sidebar ul li a{
   color: #000000;
   display: block;
 }
-
 .wrapper .sidebar ul li a .fas{
   width: 25px;
 }
-
 .wrapper .sidebar ul li:hover{
+  cursor: pointer;
   background-color: #594f8d;
 }
-
 .wrapper .sidebar ul li:hover a{
   color: #fff;
 }
-
-
-
 .wrapper .main_content{
   width: 100%;
-  margin-left: 200px;
+  float : left;
+  /* margin-left: 100px; */
 }
-
 .wrapper .main_content .header{
 	font-size: 40px;
   padding: 20px;
@@ -158,7 +147,6 @@ body{
 	float: right;
 	font-size : 20px;
 }
-
 .wrapper .main_content .header i{
 	float: right;
 }
@@ -169,20 +157,17 @@ body{
 .wrapper .main_content .header .search .search-box{
 	float:right;
 	width: 20%;
-
 }
 .wrapper .main_content .info{
   margin: 20px;
   color: #000000;
   line-height: 25px;
 }
-
 /*
 .wrapper .main_content .info{
     border:"1";
     cellpadding:"5"
 }*/
-
 .wrapper .main_content .info div{
   margin-bottom: 20px;
   font-size: 20px;
@@ -200,7 +185,6 @@ body{
   width: 5%;
   margin-top: 6px;
 }
-
 .col-75 {
   float: right;
   width: 90%;
@@ -213,14 +197,12 @@ body{
     color: #232323;
     border-collapse: collapse;
 }
-
 .table1, th, td {
     border: 1px solid #999;
     padding: 8px 20px;
 }
 .btn-table {
 	float: right;
-
 }
 @media (max-height: 500px){
   .social_media{

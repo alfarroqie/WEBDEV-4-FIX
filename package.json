@@ -4,7 +4,8 @@
   "description": "Project webdev kelompok 4 website news travel",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [
     "nodejs",
@@ -24,5 +25,13 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfarroqie/WEBDEV-4-FIX.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alfarroqie/WEBDEV-4-FIX/issues"
+  },
+  "homepage": "https://github.com/alfarroqie/WEBDEV-4-FIX#readme"
 }
