@@ -148,7 +148,7 @@ body{
 .wrapper .main_content{
   width: 100%;
   float : left;
-  /* margin-left: 100px; */
+  margin-left: 200px;
 }
 
 .wrapper .main_content .header{
