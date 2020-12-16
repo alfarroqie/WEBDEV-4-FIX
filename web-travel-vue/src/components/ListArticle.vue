@@ -66,7 +66,7 @@ export default {
       this.retrieveNews();
     },
 
-    removeAllNews() {
+    removeAllNews: function() {
       NewsDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
