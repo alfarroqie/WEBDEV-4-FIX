@@ -1,11 +1,124 @@
 <template>
-    <div class="wrapper">
+  <v-row align="center" class="list px-3 mx-auto">
+    <v-col cols="12" md="8">
+      <v-text-field v-model="title" label="Search by Title"></v-text-field>
+    </v-col>
 
-        <div class="main_content">
-        
-        </div>
-    </div>
+    <v-col cols="12" md="4">
+      <v-btn small @click="searchTitle">
+        Search
+      </v-btn>
+    </v-col>
+
+    <v-col cols="12" sm="12">
+      <v-card class="mx-auto" tile>
+        <v-card-title>List Kategori</v-card-title>
+
+        <v-data-table
+          :headers="headers"
+          :items="list_kategori"
+          disable-pagination
+          :hide-default-footer="true"
+        >
+          <template v-slot:[`item.actions`]="{ item }">
+            <v-icon small class="mr-2" @click="editCategory(item.id)">mdi-pencil</v-icon>
+            <v-icon small @click="deleteCategory(item.id)">mdi-delete</v-icon>
+          </template>
+        </v-data-table>
+
+        <v-card-actions v-if="category.length > 0">
+          <v-btn small color="error" @click="removeAllCategory">
+            Remove All
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
+
+<script>
+import CategoryDataService from "../services/CategoryDataService";
+export default {
+  name: "kategori-list",
+  data() {
+    return {
+      list_kategori: [],
+      title: "",
+      headers: [
+        { text: "Name", align: "start", sortable: false, value: "name" },
+        { text: "Status", value: "status", sortable: false },
+        { text: "Actions", value: "actions", sortable: false },
+      ],
+    };
+  },
+  methods: {
+    retrieveCategory() {
+      CategoryDataService.getAll()
+        .then((response) => {
+          this.category = response.data.map(this.getDisplayCategory);
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    refreshList() {
+      this.retrieveCategory();
+    },
+
+    // removeAllTutorials() {
+    //   CategoryDataService.deleteAll()
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       this.refreshList();
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // },
+
+    searchTitle() {
+      CategoryDataService.findByTitle(this.title)
+        .then((response) => {
+          this.category = response.data.map(this.getDisplayCategory);
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    editCategory(id) {
+      this.$router.push({ name: "Category-details", params: { id: id } });
+    },
+
+    deleteCategory(id) {
+      CategoryDataService.delete(id)
+        .then(() => {
+          this.refreshList();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    // getDisplayCategory(category) {
+    //   return {
+    //     // id: tutorial.id,
+    //     // title: tutorial.title.length > 30 ? tutorial.title.substr(0, 30) + "..." : tutorial.title,
+    //     // description: tutorial.description.length > 30 ? tutorial.description.substr(0, 30) + "..." : tutorial.description,
+    //     // status: tutorial.published ? "Published" : "Pending",
+    //   };
+    // },
+  },
+  mounted() {
+    this.retrieveCategory();
+  },
+};
+</script>
+
+
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
