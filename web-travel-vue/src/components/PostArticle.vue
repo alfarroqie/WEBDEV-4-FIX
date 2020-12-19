@@ -77,12 +77,9 @@ export default {
         author: this.author,
         title: this.title,
         content: this.content,
-        publish: false
+        publish: false,
+        categoryId: this.idCategoryNews
       }
-      // const newsCategory ={
-      //   newsId : "",
-      //   categoryId: this.categoryNews.id
-      // }
       NewsDataService.create(news)
         .then((response) => {
           console.log(response.data);
@@ -90,13 +87,6 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-      // NewsDataService.addNewsCategory(newsCategory)
-      //   .then((response) => {
-      //     console.log(response.data);
-      //   })
-      //   .catch((e) =>{
-      //     console.log(e);
-      //   }); 
     },
     mapNewsCategory(category) {
       return {
