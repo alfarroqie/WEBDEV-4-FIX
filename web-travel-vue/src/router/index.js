@@ -4,16 +4,16 @@ import AddCategories from '../components/AddCategories.vue';
 import PostArticle from '../components/PostArticle.vue'
 import ListArticle from '../components/ListArticle.vue'
 import ListCategories from '../components/ListCategories.vue'
-//import Cms from '../components/Cms.vue'
+import Cms from '../components/Cms.vue'
 import VueRouter from "vue-router";
 Vue.use(Router);
 
 const routes = [
-    // {
-    //     path: '',
-    //     name: 'cms',
-    //     component: Cms,
-    // },
+    {
+        path: '',
+        name: 'cms',
+        component: Cms,
+    },
     {
         path: '/addCategories',
         name: 'addCategories',

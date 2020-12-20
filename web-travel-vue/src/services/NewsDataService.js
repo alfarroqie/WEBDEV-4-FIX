@@ -28,9 +28,6 @@ class NewsDataService {
     findByTitle(title) {
         return http.get(`/news//${title}`);
     }
-    addNewsCategory(data){
-        return http.post(`news/category`, data);
-    }
 }
 
 export default new NewsDataService();
