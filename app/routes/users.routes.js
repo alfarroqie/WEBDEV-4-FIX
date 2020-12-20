@@ -5,7 +5,13 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new Users
-    router.post("/", users.create);
+    router.post("/signup", users.create);
+
+    //Login user
+    router.post("/login", users.login);
+
+    //Change Password
+    router.put("/change-password", users.changePassword);
   
     // Retrieve all Users
     router.get("/", users.findAll);
