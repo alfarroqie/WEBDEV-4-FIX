@@ -43,7 +43,7 @@ exports.authenticateAdmin = async (req ,res , next) => {
     }else{
         throw validate
     }
-    next();
+
     }catch(err){
         console.log(err)
         res.status(err.statusCode).send({
