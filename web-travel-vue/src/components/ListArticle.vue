@@ -66,7 +66,7 @@ export default {
       this.retrieveNews();
     },
 
-    removeAllNews() {
+    removeAllNews: function() {
       NewsDataService.deleteAll()
         .then((response) => {
           console.log(response.data);
@@ -113,7 +113,7 @@ export default {
           news.author.length > 30
             ? news.author.substr(0, 30) + "..."
             : news.author,
-        status: news.published ? "Published" : "Pending",
+        status: news.publish ? "Published" : "Pending",
       };
     },
   },
@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .list {
   max-width: 750px;
 }
