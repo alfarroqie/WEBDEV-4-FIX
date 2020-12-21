@@ -188,7 +188,7 @@ exports.getNewestNews = (req, res) => {
 
 //GET 3 berita terbaru
 exports.findNewest = (req, res) => {
-  News.findAll({where:{order: [['createdAt', 'ASC']]},limit:3})
+  News.findAll({order: [['createdAt', 'ASC']], limit: 3})
     .then(data => {
       res.send(data);
     })
@@ -215,7 +215,7 @@ exports.getNewsandCategory = (req,res) => {
     ],
   })
     .then((data) => {
-      res.status(500).send(data);
+      res.send(data);
     })
     .catch((err) => {
       console.log(">> Error while retrieving news: ", err);
@@ -239,9 +239,40 @@ exports.getNewsWithCategoryName = (req,res) => {
     ],
   })
     .then((data) => {
-      res.status(500).send(data);
+      res.send(data);
     })
     .catch((err) => {
       console.log(">> Error while retrieving news: ", err);
+    });
+};
+
+// Delete all News from the database.
+exports.deleteAll = (req, res) => {
+  News.destroy({
+    where: {},
+    truncate: false
+  })
+    .then(nums => {
+      res.send({ message: `${nums} News were deleted successfully!` });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all news."
+      });
+    });
+};
+
+// find all published News
+exports.findAllPublished = (req, res) => {
+  News.findAll({ where: { publish: true } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving news."
+      });
     });
 };
