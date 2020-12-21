@@ -24,7 +24,7 @@ module.exports = app => {
     router.put("/:id", users.update);
   
     // Delete a Users with id
-    router.delete("/:id", authJwt.authenticateUser, users.delete);
+    router.delete("/delete", users.delete);
   
     app.use('/api/users', router);
   };

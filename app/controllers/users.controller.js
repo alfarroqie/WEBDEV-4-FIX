@@ -102,7 +102,7 @@ exports.update = (req, res) => {
 
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.UserId
+  const id = req.userId
 
   User.destroy({
     where: { id: id }
@@ -169,7 +169,9 @@ exports.changePassword = async (req, res) => {
     const id = req.userId
     const user = await User.findByPk(id)
     if(user){
-      user.password = newPassword
+      let salt = await bcrypt.genSalt(10);
+      let hash = await bcrypt.hash(newPassword, salt);
+      user.password = hash
       await user.save()
       res.status(200).send({
         message : "Ubah password berhasil"
