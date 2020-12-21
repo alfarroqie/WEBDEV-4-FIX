@@ -102,7 +102,7 @@ exports.update = (req, res) => {
 
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  const id = req.UserId
 
   User.destroy({
     where: { id: id }
@@ -166,7 +166,7 @@ catch(err){
 exports.changePassword = async (req, res) => {
   try{
     const newPassword = req.body.newPassword
-    const id = req.params.id
+    const id = req.userId
     const user = await User.findByPk(id)
     if(user){
       user.password = newPassword

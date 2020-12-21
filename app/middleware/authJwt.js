@@ -52,4 +52,20 @@ exports.authenticateAdmin = async (req ,res , next) => {
     }
 }
   
+exports.authenticateUser = async (req ,res , next) => {
+    try{
+    const validate = verifyToken(req , false);
+    if(!(validate instanceof Error)){
+        next();
+    }else{
+        throw validate
+    }
+
+    }catch(err){
+        console.log(err)
+        res.status(err.statusCode).send({
+            message : err.message
+      })
+    }
+}
 

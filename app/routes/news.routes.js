@@ -19,13 +19,13 @@ module.exports = app => {
     router.get("/id/:id", news.findOne);
   
     // Update a News with id
-    router.put("/id/:id", news.update);
+    router.put("/id/:id", authJwt.authenticateAdmin, news.update);
   
     // Delete a News with id
-    router.delete("/:id", news.delete);
+    router.delete("/:id", authJwt.authenticateAdmin, news.delete);
 
     //add category
-    router.post("/category", news.addNewsCategory);
+    router.post("/category", authJwt.authenticateAdmin, news.addNewsCategory);
 
     // get newest news
     router.get("/newest", news.getNewestNews);

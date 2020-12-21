@@ -16,10 +16,10 @@ module.exports = app => {
 
   
     // Update a Categorys with id
-    router.put("/id/:id", categorys.update);
+    router.put("/id/:id",authJwt.authenticateAdmin, categorys.update);
   
     // Delete a Categorys with id
-    router.delete("/id/:id", categorys.delete);
+    router.delete("/id/:id", authJwt.authenticateAdmin, categorys.delete);
 
     // Create news category
     // router.post("/newsCategory", categorys.addNewsCategory);
