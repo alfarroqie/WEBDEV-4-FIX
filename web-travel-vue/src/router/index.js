@@ -38,7 +38,7 @@ const routes = [
         component: ListCategories
     },
     {
-        path: '/news',
+        path: '/news/id/:id',
         name: 'News',
         component: News
     },
