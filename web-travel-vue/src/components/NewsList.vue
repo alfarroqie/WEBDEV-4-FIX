@@ -40,7 +40,7 @@
                         <a
                           class="judul"
                           @click="setActiveNews(thisNews, index)"
-                          :href="'/news/' + thisNews.id"
+                          :href="'/news/id/' + thisNews.id"
                         >
                           {{ thisNews.title }}
                         </a>
