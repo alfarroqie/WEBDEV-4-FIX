@@ -1,62 +1,70 @@
 <template>
-  <div class="list row">
-    <div class="col-md-8">
-      <div class="input-group mb-3">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search by title"
-          v-model="title"
-        />
-        <div class="input-group-append">
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            @click="searchTitle"
-          >
-            Search
-          </button>
+  <div id="app">
+    <v-app id="inspire">
+      <div class="container">
+        <div class="search col-md-12">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search by title"
+              v-model="title"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                @click="searchTitle"
+              >
+                Search
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h4>News List</h4>
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          :class="{ active: index == currentIndex }"
-          v-for="(thisNews, index) in news"
-          :key="index"
-          @click="setActiveNews(thisNews, index)"
-        >
-          {{ thisNews.title }}
-        </li>
-      </ul>
-
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllNews">
-        Remove All
-      </button>
-    </div>
-    <div class="col-md-6">
-      <div v-if="currentNews">
-        <h4>News</h4>
-        <div>
-          <label><strong>Title:</strong></label> {{ currentNews.title }}
+        <div class="title">
+          <h1>Artikel {{ this.$route.params.category }}</h1>
         </div>
-        <div>
-          <label><strong>Content:</strong></label>
-          {{ currentNews.content }}
-        </div>
-
-        <router-link :to="'/news/' + currentNews.id" class="badge badge-warning"
-          >Edit</router-link
-        >
+        <v-container grid-list-md>
+          <v-layout row wrap>
+            <v-flex style="width: 1000px">
+              <li
+                :class="{ active: index == currentIndex }"
+                v-for="(thisNews, index) in news"
+                :key="index"
+              >
+                <v-card class="event-card">
+                  <v-layout row>
+                    <img :src="thisNews.pictLink" />
+                    <v-flex>
+                      <div>
+                        <a
+                          class="judul"
+                          @click="setActiveNews(thisNews, index)"
+                          :href="'/news/' + thisNews.id"
+                        >
+                          {{ thisNews.title }}
+                        </a>
+                        <h3 class="author">{{ thisNews.author }}</h3>
+                      </div>
+                      <v-divider class="mx-4"></v-divider>
+                      <v-card-actions>
+                        <v-col>
+                          <v-icon medium>mdi-eye-outline</v-icon>
+                        </v-col>
+                        <v-col class="text-right">
+                          <v-icon medium>mdi-share</v-icon>
+                          <v-icon medium>mdi-heart-outline</v-icon>
+                        </v-col>
+                      </v-card-actions>
+                    </v-flex>
+                  </v-layout>
+                </v-card>
+              </li>
+            </v-flex>
+          </v-layout>
+        </v-container>
       </div>
-      <div v-else>
-        <br />
-        <p>Please click on a Tutorial...</p>
-      </div>
-    </div>
+    </v-app>
   </div>
 </template>
 
@@ -71,24 +79,30 @@ export default {
       currentNews: null,
       currentIndex: -1,
       title: "",
+      category: "",
     };
   },
   methods: {
-    retrieveNews() {
-      NewsDataService.getAll()
-        .then((response) => {
-          this.news = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-    refreshList() {
-      this.retrieveNews();
-      this.currentNews = null;
-      this.currentIndex = -1;
+    retrieveNews(category) {
+      if (category == "Terbaru") {
+        NewsDataService.findNewest()
+          .then((response) => {
+            this.news = response.data;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
+        NewsDataService.findByCategory(category)
+          .then((response) => {
+            this.news = response.data;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
     },
 
     setActiveNews(thisNews, index) {
@@ -96,38 +110,86 @@ export default {
       this.currentIndex = index;
     },
 
-    removeAllNews() {
-      NewsDataService.deleteAll()
-        .then((response) => {
-          console.log(response.data);
-          this.refreshList();
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
     searchTitle() {
-      NewsDataService.findByTitle(this.title)
-        .then((response) => {
-          this.news = response.data;
-          console.log(response.data);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      if (this.title != "") {
+        NewsDataService.findByTitle(this.title)
+          .then((response) => {
+            this.news = response.data;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
+        NewsDataService.getAll()
+          .then((response) => {
+            this.news = response.data;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
     },
   },
   mounted() {
-    this.retrieveNews();
+    this.retrieveNews(this.$route.params.category);
+  },
+  watch: {
+    $route: function () {
+      this.retrieveNews(this.$route.params.category);
+    },
   },
 };
 </script>
 
-<style>
-.list {
-  text-align: left;
-  max-width: 750px;
+<style scoped>
+.container {
+  margin-bottom: 2em;
+}
+
+.container li {
+  list-style: none;
+  margin: 2em 0;
+}
+
+.event-card {
+  overflow: hidden;
+  width: 65%;
   margin: auto;
+  border-radius: 0.3em;
+}
+
+.event-card img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-card .judul {
+  font-size: 2em;
+  font-weight: 400;
+  padding-top: 0.2em;
+  padding-left: 0.5em;
+}
+.event-card .author {
+  font-size: 1.2em;
+  font-weight: 400;
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+.title h1 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.btn {
+  height: 38px;
+  text-align: center;
+}
+
+.search {
+  margin: 50px auto auto;
+  width: 65%;
 }
 </style>
