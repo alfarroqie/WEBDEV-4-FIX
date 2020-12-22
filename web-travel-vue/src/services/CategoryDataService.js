@@ -3,7 +3,7 @@ const CATEGORY_BASE_URL = "/categorys"
 class CategoryDataService{
     
     create(data) {
-        return http.post(CATEGORY_BASE_URL+"/", data);
+        return http.post(CATEGORY_BASE_URL+"/create", data);
     }
 
     getAll() {
