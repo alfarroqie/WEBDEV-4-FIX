@@ -40,7 +40,7 @@
         color="red"
         ></v-progress-circular>
         </v-overlay>
-        <error-dialog class="loading" errorTitle="Aduh Error" errorMessage="Terjadi kesalahan pada pengimputan kategori" :isDialog="isError" v-if="isError"> </error-dialog>
+        <error-dialog class="loading" errorTitle="Error" errorMessage="Error while adding category" :isDialog="isError" v-if="isError"> </error-dialog>
 
     </div>
 </template>
