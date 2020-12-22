@@ -2,10 +2,12 @@
   <div id="app">
     <v-app id="inspire">
       <v-app-bar color="#aac9c0" dark fixed app>
-        <img
-          src="https://i.ibb.co/Rb6yXLg/Voyagee-removebg-preview.png"
-          style="height: 70px"
-        />
+        <a href="/news">
+          <img
+            src="https://i.ibb.co/Rb6yXLg/Voyagee-removebg-preview.png"
+            style="height: 70px"
+          />
+        </a>
         <v-spacer></v-spacer>
         <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
           <v-btn
@@ -53,7 +55,7 @@
                 <v-menu open-on-click left offset-x>
                   <template v-slot:activator="{ on, attrs }">
                     <v-list-item-title v-bind="attrs" v-on="on">
-                      <v-btn text block>Kategori</v-btn>
+                      <v-btn text block>Destinasi</v-btn>
                     </v-list-item-title>
                   </template>
 
