@@ -1,6 +1,5 @@
 <template>
-<v-app>
-    <div class="wrapper">
+  <div class="wrapper">
     <div class="sidebar">
       <div class="logo">
         <img
@@ -45,7 +44,6 @@
        <router-view></router-view>
     </div>
   </div>
-</v-app>
 </template>
 
 <script>
@@ -135,7 +133,6 @@ body{
 }
 
 .wrapper .sidebar ul li:hover{
-  cursor: pointer;
   background-color: #594f8d;
 }
 
@@ -147,7 +144,6 @@ body{
 
 .wrapper .main_content{
   width: 100%;
-  float : left;
   margin-left: 200px;
 }
 

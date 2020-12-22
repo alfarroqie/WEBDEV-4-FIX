@@ -5,7 +5,7 @@ const Categorys = db.categorys;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new News
-exports.create = async (req, res) => {
+exports.create = (req, res) => {
     // Validate request
   if (!req.body.content) {
     res.status(400).send({
@@ -24,34 +24,18 @@ exports.create = async (req, res) => {
     views: 0,
     pictLink: req.body.pictLink
   };
-  // V1
-  // await Categorys.findByPk(req.body.categoryId)
-  //   .then((categorys) => {
-  //     if (!categorys){
-  //       console.log("category not found!");
-  //     }
-  //     else{
-  //       newsCreate.addCategory(categorys);
-  //       res.send(newsCreate);
-  //     }
-  //   })
-  //   .catch(err => {
-  //     res.status(500).send({
-  //       message:
-  //         err.message || "Some error while create News"
-  //     });
-  //   });
 
-  // V2 Save news and newsCategory in database
-    const newsCreate = await News.create(news);
-    const categoryAdd1 = await Categorys.findByPk(req.body.categoryId)
-    if(!categoryAdd1){
-      console.log("Category 1 not found!");
-    }
-    else{
-      newsCreate.addCategory(categoryAdd1);
-      res.send(newsCreate);
-    }
+  // Save nNews in the database
+  News.create(news)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the News."
+      });
+    });
 };
 
 // Retrieve all News from the database.

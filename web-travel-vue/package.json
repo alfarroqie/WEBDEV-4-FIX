@@ -18,9 +18,7 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "vue": "^2.6.11",
-    "vue-router": "^3.4.9",
-    "vue2-editor": "^2.10.2",
-    "vuetify": "^2.3.21"
+    "vue-router": "^3.4.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
