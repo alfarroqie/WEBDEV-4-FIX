@@ -31,6 +31,13 @@ class NewsDataService {
     addNewsCategory(data){
         return http.post(`news/category`, data);
     }
+    findByCategory(category) {
+        return http.get(`/news/newsCategory/${category}`);
+    }
+
+    findNewest() {
+        return http.get(`/news/newest`);
+    }
 }
 
 export default new NewsDataService();
