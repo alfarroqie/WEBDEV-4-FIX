@@ -1,25 +1,33 @@
 <template>
-  <body>
-    <div class="event-card">
-      <h1>{{ currentNews.title }}</h1>
-      <h3>{{ currentNews.author }}</h3>
-      <h6>Published: {{ currentNews.publish }}</h6>
-      <p>
-        <span v-html = "currentNews.content"></span>
-      </p>
-    </div>
-  </body>
+  <div id="app">
+    <v-app id="inspire">
+      <body>
+        <div class="container">
+          <v-card class="event-card">
+            <div class="content">
+              <h1>{{ currentNews.title }}</h1>
+              <h5>Author: {{ currentNews.author }}</h5>
+              <h6>Date: {{ currentNews.createdAt }}</h6>
+              <img :src="currentNews.pictLink" />
+              <br /><br /><br />
+              <div class="ql-editor">
+                <p v-html="currentNews.content"></p>
+              </div>
+            </div>
+          </v-card>
+        </div>
+      </body>
+    </v-app>
+  </div>
 </template>
 
 <script>
 import NewsDataService from "../services/NewsDataService";
-
 export default {
   name: "news",
   data() {
     return {
       currentNews: null,
-      message: "",
     };
   },
   methods: {
@@ -33,83 +41,32 @@ export default {
           console.log(e);
         });
     },
-
-    updateNews() {
-      NewsDataService.update(this.currentNews.id, this.currentNews)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "The tutorial was updated successfully!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-    deleteNews() {
-      NewsDataService.delete(this.currentNews.id)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push({ name: "news" });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
   },
   mounted() {
-    this.message = "";
     this.getNews(this.$route.params.id);
   },
 };
 </script>
 
 <style scoped>
-.container li {
-  list-style: none;
-  margin: 2em 0;
+.container {
+  margin: 2em auto 4em;
 }
-
 .event-card {
   overflow: hidden;
   width: 65%;
   margin: 60px auto auto;
   border-radius: 0.3em;
 }
-
 .event-card img {
-  width: 300px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
-
-.event-card .judul {
-  font-size: 2em;
-  font-weight: 400;
-  padding-top: 0.2em;
-  padding-left: 0.5em;
+.content {
+  padding: 50px 100px;
 }
-.event-card .author {
-  font-size: 1.2em;
-  font-weight: 400;
-  padding-left: 1em;
-  padding-bottom: 1em;
-}
-.h1 {
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.btn {
-  height: 38px;
-  text-align: center;
-}
-
-.search {
-  margin: 120px auto auto;
-  width: 65%;
-}
-.edit-form {
-  max-width: 300px;
-  margin: auto;
+.content h1 {
+  font-size: 3em;
 }
 </style>
