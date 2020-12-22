@@ -7,6 +7,7 @@ import ListCategories from '../components/ListCategories.vue'
 import News from '../components/News.vue'
 import NewsList from '../components/NewsList.vue'
 import EditArticle from '../components/EditArticle.vue'
+import LandingPage from '../components/LandingPage.vue'
 //import Cms from '../components/Cms.vue'
 import VueRouter from "vue-router";
 Vue.use(Router);
@@ -51,6 +52,11 @@ const routes = [
         path: '/news/:id',
         name: 'news-details',
         component: EditArticle
+    },
+    {
+        path: '/news',
+        name: 'news-list',
+        component: LandingPage
     },
 
 ]
