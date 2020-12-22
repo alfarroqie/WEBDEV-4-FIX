@@ -37,16 +37,13 @@
                     <img :src="thisNews.pictLink" />
                     <v-flex>
                       <div>
-                        <router-link :to="'/news/id/' + thisNews.id">
-                          {{ thisNews.title }}
-                        </router-link>
-                        <!-- <a
+                        <a
                           class="judul"
                           @click="setActiveNews(thisNews, index)"
                           :href="'/news/id/' + thisNews.id"
                         >
                           {{ thisNews.title }}
-                        </a> -->
+                        </a>
                         <h3 class="author">{{ thisNews.author }}</h3>
                       </div>
                       <v-divider class="mx-4"></v-divider>
