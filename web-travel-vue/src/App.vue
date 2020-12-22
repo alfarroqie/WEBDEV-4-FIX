@@ -105,6 +105,7 @@ export default {
       category: [],
     };
   },
+  
   methods: {
     menuItems() {
       return this.menu;
