@@ -30,6 +30,19 @@
     "type": "git",
     "url": "git+https://github.com/alfarroqie/WEBDEV-4-FIX.git"
   },
+  "keywords": [
+    "nodejs",
+    "postgresql",
+    "express",
+    "sequelize",
+    "rest",
+    "api"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfarroqie/WEBDEV-4-FIX.git"
+  },
   "bugs": {
     "url": "https://github.com/alfarroqie/WEBDEV-4-FIX/issues"
   },
