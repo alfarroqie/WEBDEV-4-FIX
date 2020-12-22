@@ -4,16 +4,19 @@ import AddCategories from '../components/AddCategories.vue';
 import PostArticle from '../components/PostArticle.vue'
 import ListArticle from '../components/ListArticle.vue'
 import ListCategories from '../components/ListCategories.vue'
-import Cms from '../components/Cms.vue'
+import News from '../components/News.vue'
+import NewsList from '../components/NewsList.vue'
+import EditArticle from '../components/EditArticle.vue'
+//import Cms from '../components/Cms.vue'
 import VueRouter from "vue-router";
 Vue.use(Router);
 
 const routes = [
-    {
-        path: '',
-        name: 'cms',
-        component: Cms,
-    },
+    // {
+    //     path: '',
+    //     name: 'cms',
+    //     component: Cms,
+    // },
     {
         path: '/addCategories',
         name: 'addCategories',
@@ -33,6 +36,21 @@ const routes = [
         path: '/listCategories',
         name: 'ListCategories',
         component: ListCategories
+    },
+    {
+        path: '/news/id/:id',
+        name: 'News',
+        component: News
+    },
+    {
+        path: '/newsList/:category',
+        name: 'NewsList',
+        component: NewsList
+    },
+    {
+        path: '/news/:id',
+        name: 'news-details',
+        component: EditArticle
     },
 
 ]
