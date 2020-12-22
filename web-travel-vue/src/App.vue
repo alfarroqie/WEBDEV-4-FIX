@@ -1,171 +1,138 @@
 <template>
   <div id="app">
-    <!-- <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">bezKoder</router-link>
-      <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link">Tutorials</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/" class="nav-link">Add</router-link>
-        </li>
-      </div>
-    </nav> -->
-
-    <nav
-      class="navbar navbar-expand-lg navbar-dark fixed-top"
-      style="background-color: #aac9c0"
-    >
-      <div class="container">
+    <v-app id="inspire">
+      <v-app-bar color="#aac9c0" dark fixed app>
         <img
-          class="navbar-brand"
           src="https://i.ibb.co/Rb6yXLg/Voyagee-removebg-preview.png"
-          style="width: 160px; height: 80px"
-          href="#home"
+          style="height: 70px"
         />
-        <button
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          class="navbar-toggler"
-          data-target="#navbarNavDropdown"
-          data-toggle="collapse"
-          type="button"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link to="/news" class="nav-link">Terbaru</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/cms" class="nav-link">Terpopuler</router-link>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-toggle="dropdown"
+        <v-spacer></v-spacer>
+        <v-toolbar-items v-if="$vuetify.breakpoint.mdAndUp">
+          <v-btn
+            v-for="item in menu"
+            :key="item.id"
+            :to="item.link"
+            depressed
+            color="#aac9c0"
+            dark
+          >
+            {{ item.title }}
+          </v-btn>
+          <v-menu open-on-click bottom offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn depressed color="#aac9c0" dark v-bind="attrs" v-on="on">
+                Destinasi<v-icon>mdi-chevron-down</v-icon>
+              </v-btn>
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="item in locCategory"
+                :key="item.id"
+                :to="'/newsList/' + item.name"
               >
-                Kategori
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#"> Kuliner</a></li>
-                <li><a class="dropdown-item" href="#"> Tips</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <router-link to="/news" class="nav-link">Galeri</router-link>
-            </li>
-            <li class="nav-item dropdown" style="display: block">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-toggle="dropdown"
-              >
-                <i class="fas fa-user-circle"></i>
-              </a>
-              <div
-                class="dropdown-menu dropdown-menu-right"
-                style="
-                  padding: 15px;
-                  padding-bottom: 10px;
-                  width: 300px !important;
-                "
-              >
-                <form
-                  class="form-horizontal"
-                  method="post"
-                  accept-charset="UTF-8"
-                >
-                  <input
-                    id="sp_uname"
-                    class="form-control login"
-                    type="text"
-                    name="sp_uname"
-                    placeholder="Username.."
-                  />
-                  <input
-                    id="sp_pass"
-                    class="form-control login"
-                    type="password"
-                    name="sp_pass"
-                    placeholder="Password.."
-                  />
-                  <input
-                    class="btn btn-primary"
-                    type="submit"
-                    name="submit"
-                    value="login"
-                  />
-                </form>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Akhir Navbar -->
+                <v-list-item-title v-if="(item.isLocation = true)">{{
+                  item.name
+                }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          <v-btn :to="'/login'" depressed color="#aac9c0" dark> Login </v-btn>
+        </v-toolbar-items>
+        <v-menu v-if="$vuetify.breakpoint.smAndDown">
+          <template v-slot:activator="{ on }">
+            <v-btn icon v-on="on">
+              <v-icon>mdi-menu</v-icon>
+            </v-btn>
+          </template>
+          <v-list width="200px">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title v-for="item in menu" :key="item.id">
+                  <v-btn text block :href="item.link">{{ item.title }}</v-btn>
+                </v-list-item-title>
+                <v-menu open-on-click left offset-x>
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-list-item-title v-bind="attrs" v-on="on">
+                      <v-btn text block>Kategori</v-btn>
+                    </v-list-item-title>
+                  </template>
 
-    <div class="container mt-3">
-      <router-view />
-    </div>
+                  <v-list>
+                    <v-list-item
+                      v-for="item in category"
+                      :key="item.id"
+                      :to="'/newsList/' + item.name"
+                    >
+                      <v-list-item-title>{{ item.name }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+                <v-list-item-title>
+                  <v-btn text block :href="'/login'">Login</v-btn>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-app-bar>
 
-    <!-- Footer -->
-    <footer class="footer text-white mt-5" style="background-color: #aac9c0">
-      <div class="container">
-        <div class="row">
-          <div class="col text-center pt-3">
-            <p>Made with tears by Kelompok 4 &copy; 2020 Voyagee</p>
-          </div>
-        </div>
+      <div class="container mt-3">
+        <router-view />
       </div>
-    </footer>
-    <!-- Akhir Footer -->
+
+      <v-footer absolute height="auto" color="#aac9c0" dark>
+        <v-layout justify-center row wrap>
+          <v-flex color="#aac9c0" dark py-3 text-center white--text xs12>
+            Made with tears by Kelompok 4 &copy;2020
+          </v-flex>
+        </v-layout>
+      </v-footer>
+    </v-app>
   </div>
 </template>
 
 <script>
+import CategoryService from "./services/CategoryDataService";
 export default {
-  name: "app",
+  data() {
+    return {
+      menu: [
+        { id: "1", title: "Terbaru", link: "/newsList/Terbaru" },
+        { id: "2", title: "Terpopuler", link: "/newsList/Terpopuler" },
+        { id: "3", title: "Kuliner", link: "/newsList/Kuliner" },
+        { id: "4", title: "Tips", link: "/newsList/Tips" },
+      ],
+      category: [],
+    };
+  },
+  methods: {
+    menuItems() {
+      return this.menu;
+    },
+    retrieveCategory() {
+      CategoryService.getAll()
+        .then((response) => {
+          this.category = response.data.map(this.mapNewsCategory);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    mapNewsCategory(category) {
+      return {
+        name: category.name,
+        isLocation: category.isLocation,
+        id: category.id,
+      };
+    },
+  },
+  computed: {
+    locCategory: function () {
+      return this.category.filter((i) => i.isLocation == true);
+    },
+  },
+  mounted() {
+    this.retrieveCategory();
+  },
 };
 </script>
-
-<style scoped>
-.fas {
-  color: #cde5dd;
-  font-size: 20px;
-  padding-top: 0px;
-  padding-left: 5px;
-}
-
-.login {
-  margin-bottom: 5px;
-}
-
-.footer {
-  position: fixed;
-  margin-top: 100px;
-  bottom: 0px;
-  width: 100%;
-}
-
-@media all and (min-width: 992px) {
-  .navbar .nav-item .dropdown-menu {
-    display: none;
-  }
-
-  .navbar .nav-item:hover .nav-link {
-    color: #fff;
-  }
-
-  .navbar .nav-item:hover .dropdown-menu {
-    display: block;
-  }
-
-  .navbar .nav-item .dropdown-menu {
-    margin-top: 0;
-  }
-}
-</style>
