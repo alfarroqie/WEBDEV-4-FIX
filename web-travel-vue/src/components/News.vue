@@ -4,7 +4,9 @@
       <h1>{{ currentNews.title }}</h1>
       <h3>{{ currentNews.author }}</h3>
       <h6>Published: {{ currentNews.publish }}</h6>
-      <p>Content: {{ currentNews.content }}</p>
+      <p>
+        <span v-html = "currentNews.content"></span>
+      </p>
     </div>
   </body>
 </template>
@@ -69,8 +71,8 @@ export default {
 
 .event-card {
   overflow: hidden;
-  width: 100%;
-  margin: 120px auto auto;
+  width: 65%;
+  margin: 60px auto auto;
   border-radius: 0.3em;
 }
 
