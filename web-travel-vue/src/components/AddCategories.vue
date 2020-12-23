@@ -82,7 +82,7 @@
     }
   }
   </script>
-<style>
+<style scoped>
 .p-t-15 {
   padding-top: 15px;
 }
