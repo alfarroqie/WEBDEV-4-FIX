@@ -5,9 +5,7 @@
     </v-col>
 
     <v-col cols="12" md="4">
-      <v-btn small @click="searchTitle">
-        Search
-      </v-btn>
+      <v-btn small @click="searchTitle"> Search </v-btn>
     </v-col>
 
     <v-col cols="12" sm="12">
@@ -21,16 +19,18 @@
           :hide-default-footer="true"
         >
           <template v-slot:[`item.actions`]="{ item }">
-            <v-icon small class="mr-2" @click="editCategory(item.id)">mdi-pencil</v-icon>
+            <!-- <v-icon small class="mr-2" @click="editCategory(item.id)"
+              >mdi-pencil</v-icon
+            > -->
             <v-icon small @click="deleteCategory(item.id)">mdi-delete</v-icon>
           </template>
         </v-data-table>
 
-        <!-- <v-card-actions v-if="category.length > 0"> -->
-          <v-btn small color="error" @click="removeAllCategory">
-            Remove All
-          </v-btn>
-        <!-- </v-card-actions> -->
+        <!-- <v-card-actions v-if="category.length > 0">
+        <v-btn small color="error" @click="removeAllCategory">
+          Remove All
+        </v-btn>
+        </v-card-actions> -->
       </v-card>
     </v-col>
   </v-row>
@@ -45,9 +45,9 @@ export default {
       category: [],
       title: "",
       headers: [
-        { text: "Name", align: "start", sortable: false, value: "name" },
-        { text: "Status", value: "status", sortable: false },
-        { text: "Actions", value: "actions", sortable: false },
+        { text: "Kategori", align: "start", sortable: false, value: "name" },
+        { text: "Jenis", value: "isLocation", sortable: false },
+        { text: "Delete", value: "actions", sortable: false },
       ],
     };
   },
@@ -94,8 +94,9 @@ export default {
 
     getDisplayCategory(category) {
       return {
+        id: category.id,
         name: category.name,
-        status : category.status,
+        isLocation: category.isLocation ? "Destinasi" : "Lainnya",
       };
     },
   },
@@ -105,7 +106,8 @@ export default {
 };
 </script>
 
-
-<style>
-
+<style scoped>
+.list {
+  max-width: 750px;
+}
 </style>
