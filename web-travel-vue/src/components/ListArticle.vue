@@ -26,9 +26,9 @@
           </template>
         </v-data-table>
 
-        <v-card-actions v-if="theNews.length > 0">
+        <!-- <v-card-actions v-if="theNews.length > 0">
           <v-btn small color="error" @click="removeAllNews"> Remove All </v-btn>
-        </v-card-actions>
+        </v-card-actions> -->
       </v-card>
     </v-col>
   </v-row>
@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 .list {
   max-width: 750px;
 }
