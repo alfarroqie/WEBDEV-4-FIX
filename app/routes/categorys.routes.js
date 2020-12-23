@@ -1,3 +1,4 @@
+const authJwt = require("../middleware/authJwt.js");
 // Dokumentasi API atau Routes API
 module.exports = app => {
     const categorys = require("../controllers/categorys.controller.js");
@@ -5,7 +6,7 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new Categorys
-    router.post("/", categorys.create);
+    router.post("/create", authJwt.authenticateAdmin, categorys.create);
   
     // Retrieve all Categorys
     router.get("/", categorys.findAll);
@@ -15,10 +16,10 @@ module.exports = app => {
 
   
     // Update a Categorys with id
-    router.put("/id/:id", categorys.update);
+    router.put("/id/:id",authJwt.authenticateAdmin, categorys.update);
   
     // Delete a Categorys with id
-    router.delete("/id/:id", categorys.delete);
+    router.delete("/id/:id", authJwt.authenticateAdmin, categorys.delete);
 
     // Create news category
     // router.post("/newsCategory", categorys.addNewsCategory);
