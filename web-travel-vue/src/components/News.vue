@@ -67,6 +67,6 @@ export default {
   padding: 50px 30px;
 }
 .content h1 {
-  font-size: 3em;
+  font-size: 2em;
 }
 </style>
