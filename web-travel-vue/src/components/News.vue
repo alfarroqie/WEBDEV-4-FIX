@@ -54,7 +54,7 @@ export default {
 }
 .event-card {
   overflow: hidden;
-  width: 65%;
+  width: 85%;
   margin: 60px auto auto;
   border-radius: 0.3em;
 }
@@ -64,7 +64,7 @@ export default {
   object-fit: cover;
 }
 .content {
-  padding: 50px 100px;
+  padding: 50px 30px;
 }
 .content h1 {
   font-size: 3em;
