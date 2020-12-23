@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 .list {
   max-width: 750px;
 }
