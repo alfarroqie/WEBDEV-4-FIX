@@ -32,6 +32,10 @@ db.gallerys = require("./gallerys.model.js")(sequelize, Sequelize);
 db.users = require("./users.model.js")(sequelize, Sequelize);
 db.weathers = require("./weathers.model.js")(sequelize, Sequelize);
 
+//sync
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
 
 //define relation
 //many to many news and category
@@ -40,6 +44,20 @@ db.categorys.belongsToMany(db.news, {
 });
 db.news.belongsToMany(db.categorys, {
   through: "newsCategory"
+});
+
+db.categorys.belongsToMany(db.news, {
+  through: "newsSaved"
+});
+db.news.belongsToMany(db.users, {
+  through: "newsSaved"
+});
+
+db.categorys.belongsToMany(db.news, {
+  through: "newsLiked"
+});
+db.news.belongsToMany(db.users, {
+  through: "newsLiked"
 });
 
 
