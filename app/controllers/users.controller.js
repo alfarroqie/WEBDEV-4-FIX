@@ -126,41 +126,42 @@ exports.delete = (req, res) => {
 };
 
 exports.login = async (req, res) => {
-try{
-  const email = req.body.email;
-  const password = req.body.password;
-  const user = await User.findOne({
-    where: { email: email }
-  });
-  if(user){
-    const isPasswordTrue = await bcrypt.compare(password, user.password);
-    if(!isPasswordTrue){
-      const error = new Error("Wrong password");
+  try{
+    const email = req.body.email;
+    const password = req.body.password;
+    
+    const user = await User.findOne({
+      where: { email: email }
+    });
+    if(user){
+      const isPasswordTrue = await bcrypt.compare(password, user.password);
+      if(!isPasswordTrue){
+        const error = new Error("Wrong password");
+        error.statusCode = 401;
+        throw error;
+      }
+
+    } else{
+      const error = new Error("User Not Found");
       error.statusCode = 401;
       throw error;
     }
-
-  } else{
-    const error = new Error("User Not Found");
-    error.statusCode = 401;
-    throw error;
+  const token = jwt.sign({
+    id : user.id,
+    isAdmin : user.isAdmin,
+  },
+  authConfig.accessSecret,
+  {expiresIn :user.isAdmin? authConfig.adminTimeout:authConfig.userTimeout}
+  );
+    res.status(200).send({
+      message: "Token berhasil dibuat", token : token
+    });
+  } 
+  catch(err){
+    res.status(err.statusCode).send({
+      message: err.message
+    });
   }
- const token = jwt.sign({
-   id : user.id,
-   isAdmin : user.isAdmin,
- },
- authConfig.accessSecret,
- {expiresIn :user.isAdmin? authConfig.adminTimeout:authConfig.userTimeout}
- );
-  res.status(200).send({
-    message: "Token berhasil dibuat", token : token
-  });
-} 
-catch(err){
-  res.status(err.statusCode).send({
-    message: err.message
-  });
-}
 }
 
 exports.changePassword = async (req, res) => {

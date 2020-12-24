@@ -8,6 +8,7 @@ import News from '../components/News.vue'
 import NewsList from '../components/NewsList.vue'
 import EditArticle from '../components/EditArticle.vue'
 import LandingPage from '../components/LandingPage.vue'
+import Login from '../components/Login.vue'
 //import Cms from '../components/Cms.vue'
 import VueRouter from "vue-router";
 Vue.use(Router);
@@ -18,6 +19,11 @@ const routes = [
     //     name: 'cms',
     //     component: Cms,
     // },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+    },
     {
         path: '/addCategories',
         name: 'addCategories',
