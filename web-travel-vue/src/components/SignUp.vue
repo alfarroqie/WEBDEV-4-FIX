@@ -1,31 +1,31 @@
 <template>
     <div class="vue-template">
         <form>
-            <h3>Sign Up</h3>
+            <h3 class="text-center">Sign Up</h3>
 
             <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" class="form-control form-control-lg"/>
+                <input type="text" class="form-control form-control-lg" v-model="fullnameUser" required />
             </div>
 
             <div class="form-group">
                 <label>Username</label>
-                <input type="username" class="form-control form-control-lg"/>
+                <input type="username" class="form-control form-control-lg" v-model="userName" required />
             </div>
 
             <div class="form-group">
                 <label>email</label>
-                <input type="email" class="form-control form-control-lg"/>
+                <input type="email" class="form-control form-control-lg" v-model="emailUser" required />
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control form-control-lg"/>
+                <input type="password" class="form-control form-control-lg" v-model="passwordUser" required />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
-
-            <p class="forgot-account">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" @click="addUser()">Sign Up</button>
+            
+            <p class="forgot-account text-right">
                 Already registered?
                 <router-link :to="{username: 'login'}">sign in</router-link>
             </p>
@@ -34,11 +34,46 @@
 </template>
 
 <script>
+import UserService from "../services/UserDataService"
+import ErrorDialog from "./ErrorDialog.vue"
+
 export default {
+    component:{
+        ErrorDialog,
+    },
     data() {
         return {
-            
+            fullnameUser : "",
+            userName : "",
+            emailUser : "",
+            passwordUser : "",
         }
     },
+
+    methods:{
+      addUser : function(){
+          const users = {
+            fullnameUser: this.fullnameUser,
+            userName: this.userName,
+            emailUser: this.emailUser,
+            passwordUser: this.passwordUser,
+          }
+          this.isLoading = true;
+          UserService.create(users)
+              .then(result => {
+                this.isLoading = false
+                console.log(result)})
+              .catch(err => {
+                this.isLoading = false
+                this.isError = true
+                console.log(err)})
+    }
+    }
 }
 </script>
+
+<style>
+body {
+    margin-top: 50px;
+}
+</style>

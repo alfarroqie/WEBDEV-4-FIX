@@ -1,50 +1,33 @@
 <template>
-  <div v-if="currentNews" class="edit-form">
-    <h4>News</h4>
-    <form>
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          v-model="currentNews.title"
-        />
-      </div>
-      <div class="form-group">
-        <label for="content">Content</label>
-        <input
-          type="text"
-          class="form-control"
-          id="content"
-          v-model="currentNews.content"
-        />
-      </div>
-    </form>
-
-    <button class="badge badge-danger mr-2" @click="deleteNews">Delete</button>
-
-    <button type="submit" class="badge badge-success" @click="updateNews">
-      Update
-    </button>
-    <p>{{ message }}</p>
-  </div>
-
-  <div v-else>
-    <br />
-    <p>Please click on a Tutorial...</p>
+  <div id="app">
+    <v-app id="inspire">
+      <body>
+        <div class="container">
+          <v-card class="event-card">
+            <div class="content">
+              <h1>{{ currentNews.title }}</h1>
+              <h5>Author: {{ currentNews.author }}</h5>
+              <h6>Date: {{ currentNews.createdAt }}</h6>
+              <img :src="currentNews.pictLink" />
+              <br /><br /><br />
+              <div class="ql-editor">
+                <p v-html="currentNews.content"></p>
+              </div>
+            </div>
+          </v-card>
+        </div>
+      </body>
+    </v-app>
   </div>
 </template>
 
 <script>
 import NewsDataService from "../services/NewsDataService";
-
 export default {
   name: "news",
   data() {
     return {
       currentNews: null,
-      message: "",
     };
   },
   methods: {
@@ -58,39 +41,32 @@ export default {
           console.log(e);
         });
     },
-
-    updateNews() {
-      NewsDataService.update(this.currentNews.id, this.currentNews)
-        .then((response) => {
-          console.log(response.data);
-          this.message = "The tutorial was updated successfully!";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-
-    deleteNews() {
-      NewsDataService.delete(this.currentNews.id)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push({ name: "news" });
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
   },
   mounted() {
-    this.message = "";
-    this.getTutorial(this.$route.params.id);
+    this.getNews(this.$route.params.id);
   },
 };
 </script>
 
-<style>
-.edit-form {
-  max-width: 300px;
-  margin: auto;
+<style scoped>
+.container {
+  margin: 2em auto 4em;
+}
+.event-card {
+  overflow: hidden;
+  width: 85%;
+  margin: 60px auto auto;
+  border-radius: 0.3em;
+}
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.content {
+  padding: 50px 30px;
+}
+.content h1 {
+  font-size: 2em;
 }
 </style>

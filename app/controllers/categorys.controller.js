@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new Categorys
 exports.create = (req, res) => {
     // Validate request
-  if (!req.body.name || !req.body.isLocation) {
+  if (!req.body.name || req.body.isLocation===undefined) {
     res.status(400).send({
       message: "Name and isLocation can not be empty!"
     });
