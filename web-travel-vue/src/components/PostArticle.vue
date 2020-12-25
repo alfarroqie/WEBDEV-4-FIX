@@ -29,14 +29,14 @@
                   v-model="idCategoryNews"
                   :items="category"
                   placeholder="Pilih Kategori"
-                  outlined
+                  required
                 ></v-select>
             </div>
           </div>
         </div>
-        <!-- <div class="form-group">
+        <div class="form-group">
           <div class="row">
-            <label class="control-label col-sm-2">Image Thumbnail</label>
+            <label class="control-label col-sm-2">Gambar Thumbnail</label>
             <div class="col-sm-10">
               <v-file-input
                 v-model="pictLink"
@@ -47,7 +47,7 @@
             </v-file-input>
             </div>
           </div>
-        </div> -->
+        </div>
       </form>
         <vue-editor v-model="content"></vue-editor>
         <button type="button" class="btn btn-success" @click="addNews">Post</button>
@@ -74,7 +74,7 @@ export default {
       content: "",
       idCategoryNews: "",
       category: [],
-      // pictLink: ""
+      pictLink: ""
     };
   },
   methods: {
@@ -94,7 +94,7 @@ export default {
         content: this.content,
         publish: false,
         categoryId: this.idCategoryNews,
-        // pictLink: this.pictLink
+        pictLink: this.pictLink
       }
       NewsDataService.create(news)
         .then((response) => {
