@@ -89,6 +89,7 @@ export default {
   data() {
     return {
       currentNews: null,
+      category: [],
       message: "",
     };
   },
