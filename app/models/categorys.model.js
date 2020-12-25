@@ -5,6 +5,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       isLocation: {
         type: Sequelize.BOOLEAN
+      },
+      pictLink: {
+        type: Sequelize.STRING
       }
     });
     return Category;

@@ -29,8 +29,22 @@
                   v-model="idCategoryNews"
                   :items="category"
                   placeholder="Pilih Kategori"
-                  outlined
+                  required
                 ></v-select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label class="control-label col-sm-2">Gambar Thumbnail</label>
+            <div class="col-sm-10">
+              <v-file-input
+                v-model="pictLink"
+                placeholder="Pilih Gambar"
+                prepend-icon="mdi-camera"
+                accept="image/png, image/jpeg, image/jpg"
+              >
+            </v-file-input>
             </div>
           </div>
         </div>
@@ -60,6 +74,7 @@ export default {
       content: "",
       idCategoryNews: "",
       category: [],
+      pictLink: ""
     };
   },
   methods: {
@@ -78,7 +93,8 @@ export default {
         title: this.title,
         content: this.content,
         publish: false,
-        categoryId: this.idCategoryNews
+        categoryId: this.idCategoryNews,
+        pictLink: this.pictLink
       }
       NewsDataService.create(news)
         .then((response) => {

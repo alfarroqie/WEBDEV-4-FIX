@@ -5,53 +5,61 @@ const Categorys = db.categorys;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new News
+// Create and Save a new News
 exports.create = async (req, res) => {
-    // Validate request
-  if (!req.body.content) {
-    res.status(400).send({
-      message: "Content cannot be empty!"
-    });
-    return;
+
+  let filePath = null;
+
+  // Validate request
+if (!req.body.content || !req.body.author || !req.body.title) {
+  res.status(400).send({
+    message: "Author, Title, Content cannot be empty!"
+  });
+  return;
+}
+
+if (req.file){
+  filePath = req.file.path.replace(/\\/gi, "/");
+}
+
+// Create a News
+const news = {
+  author: req.body.author,
+  title: req.body.title,
+  publish: req.body.publish,
+  content: req.body.content,
+  locationLink: req.body.locationLink,
+  views: 0,
+  pictLink: filePath
+};
+// V1
+// await Categorys.findByPk(req.body.categoryId)
+//   .then((categorys) => {
+//     if (!categorys){
+//       console.log("category not found!");
+//     }
+//     else{
+//       newsCreate.addCategory(categorys);
+//       res.send(newsCreate);
+//     }
+//   })
+//   .catch(err => {
+//     res.status(500).send({
+//       message:
+//         err.message || "Some error while create News"
+//     });
+//   });
+
+// V2 Save news and newsCategory in database
+  const newsCreate = await News.create(news);
+  const categoryAdd1 = await Categorys.findByPk(req.body.categoryId)
+  if(!categoryAdd1){
+    console.log("Category 1 not found!");
   }
-
-  // Create a News
-  const news = {
-    author: req.body.author,
-    title: req.body.title,
-    publish: req.body.publish,
-    content: req.body.content,
-    locationLink: req.body.locationLink, 
-    views: 0,
-    pictLink: req.body.pictLink
-  };
-  // V1
-  // await Categorys.findByPk(req.body.categoryId)
-  //   .then((categorys) => {
-  //     if (!categorys){
-  //       console.log("category not found!");
-  //     }
-  //     else{
-  //       newsCreate.addCategory(categorys);
-  //       res.send(newsCreate);
-  //     }
-  //   })
-  //   .catch(err => {
-  //     res.status(500).send({
-  //       message:
-  //         err.message || "Some error while create News"
-  //     });
-  //   });
-
-  // V2 Save news and newsCategory in database
-    const newsCreate = await News.create(news);
-    const categoryAdd1 = await Categorys.findByPk(req.body.categoryId)
-    if(!categoryAdd1){
-      console.log("Category 1 not found!");
-    }
-    else{
-      newsCreate.addCategory(categoryAdd1);
-      res.send(newsCreate);
-    }
+  else{
+    newsCreate.addCategory(categoryAdd1);
+    res.send(newsCreate);
+  }
 };
 
 // Retrieve all News from the database.
