@@ -31,6 +31,9 @@ module.exports = app => {
 
     // get newest news
     router.get("/newest", news.getNewestNews);
+    
+    // get popular news
+    router.get("/popular", news.getPopularNews);
 
     // Retrieve 3 Newest News
     router.get("/newestNews", news.findNewest);
@@ -38,7 +41,7 @@ module.exports = app => {
     //get news and category
     router.get("/newsCategory", news.getNewsandCategory);
 
-    //Get news yogyakarta category
+    //Get news by category's name
     router.get("/newsCategory/:name", news.getNewsWithCategoryName);
     
   
