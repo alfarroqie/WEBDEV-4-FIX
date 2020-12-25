@@ -8,6 +8,8 @@
               <h1>{{ currentNews.title }}</h1>
               <h5>Author: {{ currentNews.author }}</h5>
               <h6>Date: {{ currentNews.createdAt }}</h6>
+              <v-icon medium>mdi-eye-outline</v-icon>
+              <v-text>{{ currentNews.views }} views</v-text>
               <img :src="currentNews.pictLink" />
               <br /><br /><br />
               <div class="ql-editor">
@@ -35,6 +37,14 @@ export default {
       NewsDataService.get(id)
         .then((response) => {
           this.currentNews = response.data;
+          this.currentNews.views += 1;
+          NewsDataService.update(id, this.currentNews)
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((e) => {
+              console.log(e);
+            });
           console.log(response.data);
         })
         .catch((e) => {
