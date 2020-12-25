@@ -60,8 +60,8 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
-import NewsDataService from "../services/NewsDataService";
-import CategoryService from "../services/CategoryDataService";
+import NewsDataService from "../../services/NewsDataService";
+import CategoryService from "../../services/CategoryDataService";
 export default {
   components: {
     VueEditor
