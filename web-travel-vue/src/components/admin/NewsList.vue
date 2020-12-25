@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import NewsDataService from "../services/NewsDataService";
+import NewsDataService from "../../services/NewsDataService";
 
 export default {
   name: "news-list",
