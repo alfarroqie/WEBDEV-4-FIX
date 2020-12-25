@@ -1,69 +1,83 @@
 import Vue from "vue";
 import Router from "vue-router";
-import AddCategories from '../components/AddCategories.vue';
-import PostArticle from '../components/PostArticle.vue'
-import ListArticle from '../components/ListArticle.vue'
-import ListCategories from '../components/ListCategories.vue'
-import News from '../components/News.vue'
-import NewsList from '../components/NewsList.vue'
-import EditArticle from '../components/EditArticle.vue'
-import LandingPage from '../components/LandingPage.vue'
+import Cms from '../components/admin/Cms.vue';
+import AddCategories from '../components/admin/AddCategories.vue';
+import PostArticle from '../components/admin/PostArticle.vue'
+import ListArticle from '../components/admin/ListArticle.vue'
+import ListCategories from '../components/admin/ListCategories.vue'
+import EditArticle from '../components/admin/EditArticle.vue'
+import NavBar from '../components/user/NavBar.vue'
+import News from '../components/user/News.vue'
+import NewsList from '../components/user/NewsList.vue'
+import LandingPage from '../components/user/LandingPage.vue'
 import Login from '../components/Login.vue'
-//import Cms from '../components/Cms.vue'
 import VueRouter from "vue-router";
 Vue.use(Router);
 
 const routes = [
-    // {
-    //     path: '',
-    //     name: 'cms',
-    //     component: Cms,
-    // },
     {
         path: '/login',
         name: 'login',
         component: Login,
     },
     {
-        path: '/addCategories',
-        name: 'addCategories',
-        component: AddCategories,
+        path: '/admin',
+        component: Cms,
+        children: [
+            {
+                path: '/admin/addCategories',
+                name: 'addCategories',
+                component: AddCategories,
+            },
+            {
+                path: '/admin/postArticle',
+                name: 'PostArticle',
+                component: PostArticle
+            },
+            {
+                path: '/admin/listArticle',
+                name: 'ListArticle',
+                component: ListArticle
+            },
+            {
+                path: '/admin/listCategories',
+                name: 'ListCategories',
+                component: ListCategories
+            },
+            {
+                path: '/admin/news/:id',
+                name: 'news-details',
+                component: EditArticle
+            },
+        ]
     },
+
     {
-        path: '/postArticle',
-        name: 'PostArticle',
-        component: PostArticle
-    },
-    {
-        path: '/listArticle',
-        name: 'ListArticle',
-        component: ListArticle
-    },
-    {
-        path: '/listCategories',
-        name: 'ListCategories',
-        component: ListCategories
-    },
-    {
-        path: '/news/id/:id',
-        name: 'News',
-        component: News
-    },
-    {
-        path: '/newsList/:category',
-        name: 'NewsList',
-        component: NewsList
-    },
-    {
-        path: '/news/:id',
-        name: 'news-details',
-        component: EditArticle
-    },
-    {
-        path: '/news',
-        name: 'news-list',
-        component: LandingPage
-    },
+        path: '/',
+        component: NavBar,
+        children: [
+            {
+                path: '/',
+                name: 'news-list',
+                component: LandingPage
+            },
+            {
+                path: '/news',
+                name: 'news-list',
+                component: LandingPage
+            },
+            {
+                path: '/news/id/:id',
+                name: 'News',
+                component: News
+            },
+            {
+                path: '/newsList/:category',
+                name: 'NewsList',
+                component: NewsList
+            },
+        ]
+    }
 
 ]
 const router = new VueRouter({
