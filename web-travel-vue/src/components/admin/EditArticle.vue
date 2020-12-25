@@ -128,6 +128,9 @@ export default {
         .then((response) => {
           this.currentNews.publish = status;
           console.log(response.data);
+          this.message = this.currentNews.publish
+            ? "The news has been published successfully!"
+            : "The news has been unpublished!";
         })
         .catch((e) => {
           console.log(e);
@@ -149,7 +152,7 @@ export default {
       NewsDataService.delete(this.currentNews.id)
         .then((response) => {
           console.log(response.data);
-          this.$router.push({ name: "news" });
+          this.$router.push("/admin/listArticle");
         })
         .catch((e) => {
           console.log(e);
