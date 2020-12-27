@@ -3,6 +3,7 @@ const db = require("../models");
 const News = db.news;
 const Categorys = db.categorys;
 const Op = db.Sequelize.Op;
+const path = require("path");
 
 // Create and Save a new News
 // Create and Save a new News
@@ -52,13 +53,15 @@ const news = {
 
 // V2 Save news and newsCategory in database
   const newsCreate = await News.create(news);
-  const categoryAdd1 = await Categorys.findByPk(req.body.categoryId)
-  if(!categoryAdd1){
-    console.log("Category 1 not found!");
-  }
-  else{
-    newsCreate.addCategory(categoryAdd1);
-    res.send(newsCreate);
+  if(req.body.categoryId){
+    const categoryAdd1 = await Categorys.findByPk(req.body.categoryId);
+    if(!categoryAdd1){
+      console.log("Category not found!");
+    }
+    else{
+      newsCreate.addCategory(categoryAdd1);
+      res.send(newsCreate);
+    }
   }
 };
 
@@ -284,3 +287,11 @@ exports.findAllPublished = (req, res) => {
       });
     });
 };
+
+exports.newsLiked = (req,res) => {
+
+}
+
+exports.newsSaved = (req,res) => {
+  
+}
