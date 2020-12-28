@@ -38,6 +38,9 @@ class NewsDataService {
     findNewest() {
         return http.get(`/news/newest`);
     }
+    findPopular() {
+        return http.get(`/news/popular`);
+    }
 }
 
 export default new NewsDataService();

@@ -57,21 +57,21 @@ export default {};
 export default{
   name: 'AddCategories',
   methods: {
-    onAddCategoriesClick(){
-      if(this.$route.path !== '/addCategories')
-        this.$router.push('/addCategories')
+    onAddCategoriesClick() {
+      if (this.$route.path !== "/admin/addCategories")
+        this.$router.push("/admin/addCategories");
     },
-    onPostArticleClick(){
-      if(this.$route.path !== '/postArticle')
-        this.$router.push('/postArticle')
+    onPostArticleClick() {
+      if (this.$route.path !== "/admin/postArticle")
+        this.$router.push("/admin/postArticle");
     },
-    onListArticleClick(){
-      if(this.$route.path !== '/listArticle')
-        this.$router.push('/listArticle')
+    onListArticleClick() {
+      if (this.$route.path !== "/admin/listArticle")
+        this.$router.push("/admin/listArticle");
     },
-    onListCategoriesClick(){
-      if(this.$route.path !== '/listCategories')
-        this.$router.push('/listCategories')
+    onListCategoriesClick() {
+      if (this.$route.path !== "/admin/listCategories")
+        this.$router.push("/admin/listCategories");
     },
     onLogOutClick(){
       
@@ -119,7 +119,7 @@ body{
 }
 
 .wrapper .sidebar ul li{
-  padding: 15px;
+  padding: 15px 0px;
   border-bottom: 1px solid #bdb8d7;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   border-top: 1px solid rgba(255,255,255,0.05);
@@ -152,7 +152,7 @@ body{
 }
 
 .wrapper .main_content .header{
-	font-size: 40px;
+  font-size: 40px;
   padding: 20px;
   background: #fff;
   color: #717171;
@@ -165,70 +165,5 @@ body{
 
 .wrapper .main_content .header i{
 	float: right;
-}
-.wrapper .main_content .header .search{
-	padding-left : -70px;
-	padding-top: 30px;
-}
-.wrapper .main_content .header .search .search-box{
-	float:right;
-	width: 20%;
-
-}
-.wrapper .main_content .info{
-  margin: 20px;
-  color: #000000;
-  line-height: 25px;
-}
-
-/*
-.wrapper .main_content .info{
-    border:"1";
-    cellpadding:"5"
-}*/
-
-.wrapper .main_content .info div{
-  margin-bottom: 20px;
-  font-size: 20px;
-}
-/*
-.wrapper .main_content .info .judul-form{
-  margin-right: 5px;
-  font-size: 10px;
-  border: none;
-  cursor: pointer;
-}
-*/
-.col-25 {
-  float: right;
-  width: 5%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: right;
-  width: 90%;
-  margin-top: 6px;
-}
-.wrapper .main_content .info .judul-form .form-control{
-  font-size: 17px;
-}
-.table1 {
-    color: #232323;
-    border-collapse: collapse;
-}
-
-.table1, th, td {
-    border: 1px solid #999;
-    padding: 8px 20px;
-}
-.btn-table {
-	float: right;
-
-}
-@media (max-height: 500px){
-  .social_media{
-    display: none !important;
-  }
 }
 </style>

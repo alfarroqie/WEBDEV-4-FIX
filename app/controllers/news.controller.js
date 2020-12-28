@@ -185,7 +185,7 @@ exports.addNewsCategory = (req, res) => {
 
 // Get Newest News
 exports.getNewestNews = (req, res) => {
-  News.findAll({order: [['createdAt', 'ASC']]})
+  News.findAll({where: { publish: true }, order: [['createdAt', 'DESC']]})
     .then(data => {
       res.send(data);
     })
@@ -199,7 +199,7 @@ exports.getNewestNews = (req, res) => {
 
 //GET 3 berita terbaru
 exports.findNewest = (req, res) => {
-  News.findAll({order: [['createdAt', 'ASC']], limit: 3})
+  News.findAll({where: { publish: true }, order: [['createdAt', 'DESC']], limit: 3})
     .then(data => {
       res.send(data);
     })
@@ -211,9 +211,23 @@ exports.findNewest = (req, res) => {
     });
 }
 
+// Get Popular News
+exports.getPopularNews = (req, res) => {
+  News.findAll({where: { publish: true }, order: [['views', 'DESC']]})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving News."
+      });
+    });
+};
+
 //get news with category
 exports.getNewsandCategory = (req,res) => {
-  return News.findAll({
+  return News.findAll({ where: { publish: true },
     include: [
       {
         model: Categorys,
@@ -232,9 +246,10 @@ exports.getNewsandCategory = (req,res) => {
       console.log(">> Error while retrieving news: ", err);
     });
 };
+
 exports.getNewsWithCategoryName = (req,res) => {
   const name = req.params.name;
-  return News.findAll({
+  return News.findAll({ where: { publish: true },
     include: [
       {
         model: Categorys,
@@ -293,5 +308,5 @@ exports.newsLiked = (req,res) => {
 }
 
 exports.newsSaved = (req,res) => {
-  
-}
+
+} 

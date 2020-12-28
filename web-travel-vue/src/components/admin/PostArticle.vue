@@ -60,8 +60,8 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
-import NewsDataService from "../services/NewsDataService";
-import CategoryService from "../services/CategoryDataService";
+import NewsDataService from "../../services/NewsDataService";
+import CategoryService from "../../services/CategoryDataService";
 export default {
   components: {
     VueEditor
@@ -95,7 +95,7 @@ export default {
       news.append("publish", false);
       news.append("categoryId", this.idCategoryNews);
       news.append("pictLink", this.pictLink);
-
+      
       // const news = {
       //   author: this.author,
       //   title: this.title,
@@ -124,4 +124,3 @@ export default {
   }
 };
 </script>
-

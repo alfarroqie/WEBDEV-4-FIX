@@ -35,15 +35,16 @@
                 <v-card class="event-card">
                   <v-layout row>
                     <img :src="thisNews.pictLink" />
-                    <v-flex>
+                    <v-flex style="width: 100px">
                       <div>
-                        <a
-                          class="judul"
-                          @click="setActiveNews(thisNews, index)"
-                          :href="'/news/id/' + thisNews.id"
-                        >
-                          {{ thisNews.title }}
-                        </a>
+                        <router-link :to="'/news/id/' + thisNews.id">
+                          <v-card-text
+                            class="judul"
+                            @click="setActiveNews(thisNews, index)"
+                          >
+                            {{ thisNews.title }}
+                          </v-card-text>
+                        </router-link>
                         <h3 class="author">{{ thisNews.author }}</h3>
                       </div>
                       <v-divider class="mx-4"></v-divider>
@@ -69,7 +70,7 @@
 </template>
 
 <script>
-import NewsDataService from "../services/NewsDataService";
+import NewsDataService from "../../services/NewsDataService";
 
 export default {
   name: "news-list",
@@ -162,14 +163,14 @@ export default {
 
 .event-card img {
   width: 300px;
-  height: 200px;
+  height: auto;
   object-fit: cover;
 }
 
 .event-card .judul {
   font-size: 2em;
   font-weight: 400;
-  padding-top: 0.2em;
+  padding-top: 0.5em;
   padding-left: 0.5em;
 }
 .event-card .author {
