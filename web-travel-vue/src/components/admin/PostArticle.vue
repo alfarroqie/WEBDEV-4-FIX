@@ -88,14 +88,22 @@ export default {
         });
     },
     addNews: function() {
-      const news = {
-        author: this.author,
-        title: this.title,
-        content: this.content,
-        publish: false,
-        categoryId: this.idCategoryNews,
-        pictLink: this.pictLink
-      }
+      let news = new FormData();
+      news.append("author", this.author);
+      news.append("title", this.title);
+      news.append("content", this.content);
+      news.append("publish", false);
+      news.append("categoryId", this.idCategoryNews);
+      news.append("pictLink", this.pictLink);
+      
+      // const news = {
+      //   author: this.author,
+      //   title: this.title,
+      //   content: this.content,
+      //   publish: false,
+      //   categoryId: this.idCategoryNews,
+      //   pictLink: this.pictLink
+      // }
       NewsDataService.create(news)
         .then((response) => {
           console.log(response.data);
@@ -116,4 +124,3 @@ export default {
   }
 };
 </script>
-
