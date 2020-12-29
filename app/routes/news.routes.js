@@ -22,6 +22,9 @@ module.exports = app => {
   
     // Update a News with id
     router.put("/id/:id", authJwt.authenticateAdmin, news.update);
+
+    // Update a News for views
+    router.put("/:id", news.update);
   
     // Delete a News with id
     router.delete("/:id", authJwt.authenticateAdmin, news.delete);

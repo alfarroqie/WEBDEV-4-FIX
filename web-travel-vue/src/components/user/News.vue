@@ -38,7 +38,7 @@ export default {
         .then((response) => {
           this.currentNews = response.data;
           this.currentNews.views += 1;
-          NewsDataService.update(id, this.currentNews)
+          NewsDataService.updateViews(id, this.currentNews)
             .then((response) => {
               console.log(response.data);
             })

@@ -17,6 +17,10 @@ class NewsDataService {
         return http.put(`/news/id/${id}`, data);
     }
 
+    updateViews(id, data) {
+        return http.put(`/news/${id}`, data);
+    }
+
     delete(id) {
         return http.delete(`/news/${id}`);
     }
