@@ -46,8 +46,8 @@
 </template>
 
 <script>
-  import CategoryService from "../services/CategoryDataService"
-  import ErrorDialog from "./ErrorDialog.vue"
+  import CategoryService from "../../services/CategoryDataService"
+  import ErrorDialog from "../ErrorDialog.vue"
   export default{
     components:{
       ErrorDialog,
