@@ -46,18 +46,22 @@ db.news.belongsToMany(db.categorys, {
   through: "newsCategory"
 });
 
-db.categorys.belongsToMany(db.news, {
-  through: "newsSaved"
+db.users.belongsToMany(db.news, {
+  through: "newsSaved",
+   as: "NewsSaved"
 });
 db.news.belongsToMany(db.users, {
-  through: "newsSaved"
+  through: "newsSaved",
+  as: "NewsSaved"
 });
 
-db.categorys.belongsToMany(db.news, {
-  through: "newsLiked"
+db.users.belongsToMany(db.news, {
+  through: "newsLiked",
+  as: "NewsLiked"
 });
 db.news.belongsToMany(db.users, {
-  through: "newsLiked"
+  through: "newsLiked",
+   as: "NewsLiked"
 });
 
 

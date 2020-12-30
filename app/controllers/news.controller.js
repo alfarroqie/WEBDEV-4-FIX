@@ -302,11 +302,3 @@ exports.findAllPublished = (req, res) => {
       });
     });
 };
-
-exports.newsLiked = (req,res) => {
-
-}
-
-exports.newsSaved = (req,res) => {
-
-} 
