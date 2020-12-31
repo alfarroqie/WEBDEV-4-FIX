@@ -8,7 +8,7 @@
               :class="{ active: index == currentIndex }"
               v-for="(thisNews, index) in news.slice(0, 5)"
               :key="index"
-              :src="thisNews.pictLink"
+              :src="'http://localhost:8082/' + thisNews.pictLink"
               reverse-transition="scroll-x-reverse-transition"
               transition="slide-x-transition"
             >
@@ -66,7 +66,7 @@
           >
             <v-card class="mx-auto flexcard" height="100%" max-width="300">
               <v-img
-                :src="thisNews.pictLink"
+                :src="'http://localhost:8082/' + thisNews.pictLink"
                 height="200px"
                 max-height="200px"
               ></v-img>

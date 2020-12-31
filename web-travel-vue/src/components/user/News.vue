@@ -10,7 +10,7 @@
               <h6>Date: {{ currentNews.createdAt }}</h6>
               <v-icon medium>mdi-eye-outline</v-icon>
               <v-text>{{ currentNews.views }} views</v-text>
-              <img :src="currentNews.pictLink" />
+              <img :src="'http://localhost:8082/' + currentNews.pictLink" />
               <br /><br /><br />
               <div class="ql-editor">
                 <p v-html="currentNews.content"></p>

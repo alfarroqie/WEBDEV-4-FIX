@@ -14,7 +14,7 @@ module.exports = app => {
     router.get("/", news.findAll);
 
     // Retrive news by search
-    router.get("/:title", news.findBySearch);
+    router.get("/title/:title", news.findBySearch);
 
   
     // Retrieve a single News with id

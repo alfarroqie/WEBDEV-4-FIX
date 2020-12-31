@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -31,6 +32,10 @@ db.sequelize.sync();
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to News Travel App" });
 });
+
+
+app.use('/app/imageUpload', express.static(path.join(__dirname, 'app', 'imageUpload')));
+
 
 // require routes for API
 require("./app/routes/weathers.routes")(app);
