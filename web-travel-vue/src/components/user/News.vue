@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       currentNews: null,
+      share: false,
     };
   },
   methods: {
