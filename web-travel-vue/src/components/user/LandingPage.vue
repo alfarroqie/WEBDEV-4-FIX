@@ -82,10 +82,9 @@
                 <v-card-actions>
                   <v-col>
                     <v-icon medium>mdi-eye-outline</v-icon>
-                    <v-text> {{ thisNews.views }}</v-text>
+                    <v-text> {{ thisNews.views }} views</v-text>
                   </v-col>
                   <v-col class="text-right">
-                    <v-icon medium>mdi-share</v-icon>
                     <v-icon medium>mdi-heart-outline</v-icon>
                   </v-col>
                 </v-card-actions>

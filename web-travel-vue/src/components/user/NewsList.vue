@@ -53,7 +53,6 @@
                           <v-icon medium>mdi-eye-outline</v-icon>
                         </v-col>
                         <v-col class="text-right">
-                          <v-icon medium>mdi-share</v-icon>
                           <v-icon medium>mdi-heart-outline</v-icon>
                         </v-col>
                       </v-card-actions>
@@ -94,7 +93,7 @@ export default {
           .catch((e) => {
             console.log(e);
           });
-      } else if (category == "Terpopuler"){
+      } else if (category == "Terpopuler") {
         NewsDataService.findPopular()
           .then((response) => {
             this.news = response.data;
@@ -103,8 +102,7 @@ export default {
           .catch((e) => {
             console.log(e);
           });
-      }
-      else {
+      } else {
         NewsDataService.findByCategory(category)
           .then((response) => {
             this.news = response.data;
