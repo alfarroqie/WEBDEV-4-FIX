@@ -30,7 +30,7 @@ class NewsDataService {
     }
 
     findByTitle(title) {
-        return http.get(`/news//${title}`);
+        return http.get(`/news/title/${title}`);
     }
     addNewsCategory(data){
         return http.post(`news/category`, data);
@@ -44,6 +44,9 @@ class NewsDataService {
     }
     findPopular() {
         return http.get(`/news/popular`);
+    }
+    publishNews(id,data){
+        return http.put(`/news/${id}`, data);
     }
 }
 

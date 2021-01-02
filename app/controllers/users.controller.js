@@ -190,3 +190,56 @@ exports.changePassword = async (req, res) => {
   }); 
 }
 }
+
+// SAVE AND LIKE NEWS
+
+exports.saveNews = async (req,res) => {
+  try{
+    const user = await User.findByPk(req.body.userId);
+    const news = await News.findByPk(req.body.newsId);
+
+    user.addNewsSaved(news);
+    res.status(200).send({
+      message: "Berita berhasil tersimpan"
+    })
+  }
+  catch(err){
+    res.status(err.status).send({
+      message: err.message
+    })
+  }
+}
+
+exports.likeNews = async (req,res) => {
+  try{
+    const user = await User.findByPk(req.body.userId);
+    const news = await News.findByPk(req.body.newsId);
+
+    user.addNewsLiked(news);
+    res.status(200).send({
+      message: "Berita berhasil disukai"
+    })
+  }
+  catch(err){
+    res.status(err.status).send({
+      message: err.message
+    })
+  }
+}
+
+exports.getSavedUser = async (req,res) => {
+  try{
+    const user = await User.findOne({
+      where: {id : req.params.id},
+      include: [{
+        model: News,
+        as: 'NewsSaved'
+      }]});
+    res.status(200).send(user);
+  }
+  catch(err){
+    res.status(err.status).send({
+      message: err.message
+    })
+  }
+}

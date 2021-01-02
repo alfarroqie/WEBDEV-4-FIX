@@ -34,12 +34,12 @@
               >
                 <v-card class="event-card">
                   <v-layout row>
-                    <img :src="thisNews.pictLink" />
+                    <img :src="'http://localhost:8082/' + thisNews.pictLink" />
                     <v-flex style="width: 100px">
                       <div>
                         <router-link :to="'/news/id/' + thisNews.id">
                           <v-card-text
-                            class="judul"
+                            class="title"
                             @click="setActiveNews(thisNews, index)"
                           >
                             {{ thisNews.title }}
@@ -94,7 +94,17 @@ export default {
           .catch((e) => {
             console.log(e);
           });
-      } else {
+      } else if (category == "Terpopuler"){
+        NewsDataService.findPopular()
+          .then((response) => {
+            this.news = response.data;
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+      else {
         NewsDataService.findByCategory(category)
           .then((response) => {
             this.news = response.data;
