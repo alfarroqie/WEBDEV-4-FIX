@@ -8,8 +8,20 @@
               <h1>{{ currentNews.title }}</h1>
               <h5>Author: {{ currentNews.author }}</h5>
               <h6>Date: {{ currentNews.createdAt }}</h6>
-              <v-icon medium>mdi-eye-outline</v-icon>
-              <v-text>{{ currentNews.views }} views</v-text>
+              <v-list align="right">
+                <v-icon medium>mdi-eye-outline</v-icon>
+                <v-text> {{ currentNews.views }} views </v-text>
+                <v-btn icon @click="share = true">
+                  <v-icon>mdi-share</v-icon>
+                </v-btn>
+                <share-dialog v-model="share"></share-dialog>
+                <v-btn icon>
+                  <v-icon>mdi-bookmark-outline</v-icon>
+                </v-btn>
+                <v-btn icon>
+                  <v-icon>mdi-heart-outline</v-icon>
+                </v-btn>
+              </v-list>
               <img :src="'http://localhost:8082/' + currentNews.pictLink" />
               <br /><br /><br />
               <div class="ql-editor">
@@ -25,7 +37,11 @@
 
 <script>
 import NewsDataService from "../../services/NewsDataService";
+import ShareDialog from "./ShareDialog.vue";
 export default {
+  components: {
+    ShareDialog,
+  },
   name: "news",
   data() {
     return {
