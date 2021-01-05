@@ -45,7 +45,8 @@ export default {
       theNews: [],
       title: "",
       headers: [
-        { text: "Title", align: "start", sortable: false, value: "title" },
+        { text: "Id", align: "start", sortable: false, value: "id" },
+        { text: "Title", sortable: false, value: "title" },
         { text: "Author", value: "author", sortable: false },
         { text: "Status", value: "status", sortable: false },
         { text: "Actions", value: "actions", sortable: false },

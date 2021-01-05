@@ -2,9 +2,12 @@ const db = require("../models");
 const Categorys = db.categorys;
 const News = db.news;
 const Op = db.Sequelize.Op;
+const path = require("path");
 
 // Create and Save a new Categorys
 exports.create = (req, res) => {
+  let filePath = null;
+
     // Validate request
   if (!req.body.name || req.body.isLocation===undefined) {
     res.status(400).send({
@@ -13,10 +16,15 @@ exports.create = (req, res) => {
     return;
   }
 
+  if (req.file){
+    filePath = req.file.path.replace(/\\/gi, "/");
+  }
+
   // Create a Categorys
   const categorys = {
     name: req.body.name,
-    isLocation: req.body.isLocation
+    isLocation: req.body.isLocation,
+    pictLink: filePath
   };
 
   // Save Categorys in the database

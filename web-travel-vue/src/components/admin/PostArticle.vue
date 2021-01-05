@@ -33,12 +33,20 @@
               <div class="row">
                 <label class="control-label col-sm-2">Kategori</label>
                 <div class="col-sm-10">
-                  <v-select
+                  <!-- <v-select
                     v-model="idCategoryNews"
                     :items="category"
                     placeholder="Pilih Kategori"
                     required
-                  ></v-select>
+                  ></v-select> -->
+                  <v-select
+                      v-model="idCategoryNews"
+                      :items="category"
+                      attach
+                      chips
+                      placeholder="Pilih Kategori"
+                      multiple
+                    ></v-select>
                 </div>
               </div>
             </div>
@@ -83,7 +91,7 @@ export default {
       author: "",
       title: "",
       content: "",
-      idCategoryNews: "",
+      idCategoryNews: [],
       category: [],
       pictLink: "",
       message: "",
@@ -105,7 +113,9 @@ export default {
       news.append("title", this.title);
       news.append("content", this.content);
       news.append("publish", false);
-      news.append("categoryId", this.idCategoryNews);
+      for (const i in this.idCategoryNews){
+        news.append("categoryId[]", this.idCategoryNews[i]);
+      }
       news.append("pictLink", this.pictLink);
 
       // const news = {

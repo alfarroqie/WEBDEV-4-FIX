@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Cms from '../components/admin/Cms.vue';
-import AddCategories from '../components/admin/AddCategories.vue';
+import AddCategories from '../components/admin/AddCategories2.vue';
+
 import PostArticle from '../components/admin/PostArticle.vue'
 import ListArticle from '../components/admin/ListArticle.vue'
 import ListCategories from '../components/admin/ListCategories.vue'

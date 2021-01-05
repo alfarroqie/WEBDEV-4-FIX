@@ -45,7 +45,8 @@ export default {
       category: [],
       title: "",
       headers: [
-        { text: "Kategori", align: "start", sortable: false, value: "name" },
+        { text: "Id", align: "start", sortable: false, value: "id" },
+        { text: "Kategori", sortable: false, value: "name" },
         { text: "Jenis", value: "isLocation", sortable: false },
         { text: "Delete", value: "actions", sortable: false },
       ],

@@ -1,4 +1,6 @@
 const authJwt = require("../middleware/authJwt.js");
+const uploadImage = require("../middleware/imageUpload.js");
+
 // Dokumentasi API atau Routes API
 module.exports = app => {
     const categorys = require("../controllers/categorys.controller.js");
@@ -6,7 +8,7 @@ module.exports = app => {
     var router = require("express").Router();
   
     // Create a new Categorys
-    router.post("/create", authJwt.authenticateAdmin, categorys.create);
+    router.post("/create", authJwt.authenticateAdmin, uploadImage.imageUpload, categorys.create);
   
     // Retrieve all Categorys
     router.get("/", categorys.findAll);

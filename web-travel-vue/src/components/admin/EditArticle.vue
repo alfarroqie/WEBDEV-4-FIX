@@ -33,12 +33,20 @@
               <div class="row">
                 <label class="control-label col-sm-2">Kategori</label>
                 <div class="col-sm-10">
-                  <v-select
-                    v-model="currentNews.idCategoryNews"
+                  <!-- <v-select
+                    v-model="categoryCurrent"
                     :items="category"
                     placeholder="Pilih Kategori"
                     outlined
-                  ></v-select>
+                  ></v-select> -->
+                  <v-select
+                      v-model="categoryCurrent"
+                      :items="category"
+                      attach
+                      chips
+                      placeholder="Pilih Kategori"
+                      multiple
+                    ></v-select>
                 </div>
               </div>
             </div>
@@ -89,6 +97,7 @@ export default {
   data() {
     return {
       currentNews: null,
+      categoryCurrent: [],
       category: [],
       message: "",
     };
@@ -98,6 +107,7 @@ export default {
       NewsDataService.get(id)
         .then((response) => {
           this.currentNews = response.data;
+          this.categoryCurrent = this.currentNews.categories.map(this.mapCurrenCategory);
           console.log(response.data);
         })
         .catch((e) => {
@@ -122,7 +132,7 @@ export default {
         author: this.currentNews.author,
         content: this.currentNews.content,
         publish: status,
-        categoryId: this.currentNews.idCategoryNews,
+        // categoryId: this.currentNews.idCategoryNews,
       };
 
       NewsDataService.update(this.currentNews.id, data)
@@ -139,6 +149,17 @@ export default {
     },
 
     updateNews() {
+      // const categoryNews = [];
+      // for (const i in this.categoryCurrent){
+      //   CategoryService.get(this.categoryCurrent[i])
+      //     .then ((response) => {
+      //       categoryNews.push(response.data);
+      //     })
+      //     .catch((err) => {
+      //       console.log(err.message);
+      //     })
+      // }
+
       NewsDataService.update(this.currentNews.id, this.currentNews)
         .then((response) => {
           console.log(response.data);
@@ -163,6 +184,11 @@ export default {
     mapNewsCategory(category) {
       return {
         text: category.name,
+        value: category.id,
+      };
+    },
+    mapCurrenCategory(category) {
+      return {
         value: category.id,
       };
     },

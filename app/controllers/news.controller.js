@@ -52,22 +52,46 @@ const news = {
 //   });
 
 // V2 Save news and newsCategory in database
+try{
   const newsCreate = await News.create(news);
-  if(req.body.categoryId){
-    const categoryAdd1 = await Categorys.findByPk(req.body.categoryId);
-    if(!categoryAdd1){
-      console.log("Category not found!");
-    }
-    else{
-      newsCreate.addCategory(categoryAdd1);
+  if (req.body.categoryId){
+    for (const index in req.body.categoryId){
+      const categoryAdd = await Categorys.findByPk(req.body.categoryId[index]);
+      newsCreate.addCategory(categoryAdd);
       res.send(newsCreate);
     }
   }
+}
+catch(err){
+  err.message
+}
+  
+  // if(req.body.categoryId){
+  //   const categoryAdd1 = await Categorys.findByPk(req.body.categoryId);
+  //   if(!categoryAdd1){
+  //     console.log("Category not found!");
+  //   }
+  //   else{
+  //     newsCreate.addCategory(categoryAdd1);
+  //     res.send(newsCreate);
+  //   }
+  // }
 };
 
 // Retrieve all News from the database.
 exports.findAll = (req, res) => {
-  News.findAll()
+  News.findAll({
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+  })
     .then(data => {
       res.send(data);
     })
@@ -83,7 +107,18 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  News.findByPk(id)
+  News.findByPk(id,{
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+  })
     .then(data => {
       res.send(data);
     })
@@ -93,12 +128,24 @@ exports.findOne = (req, res) => {
       });
     });
 };
+
 //Retrieve all News from the database or by search.
 exports.findBySearch= (req, res) => {
   const title = req.params.title;
   var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
 
-  News.findAll({ where: condition })
+  News.findAll({ where: condition,
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+  })
     .then(data => {
       res.send(data);
     })
@@ -113,7 +160,7 @@ exports.findBySearch= (req, res) => {
 // Update a News by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-
+  
   News.update(req.body, {
     where: { id: id }
   })
@@ -185,7 +232,19 @@ exports.addNewsCategory = (req, res) => {
 
 // Get Newest News
 exports.getNewestNews = (req, res) => {
-  News.findAll({where: { publish: true }, order: [['createdAt', 'DESC']]})
+  News.findAll({where: { publish: true },
+    order: [['createdAt', 'DESC']],
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+  })
     .then(data => {
       res.send(data);
     })
@@ -199,7 +258,20 @@ exports.getNewestNews = (req, res) => {
 
 //GET 3 berita terbaru
 exports.findNewest = (req, res) => {
-  News.findAll({where: { publish: true }, order: [['createdAt', 'DESC']], limit: 3})
+  News.findAll({where: { publish: true },
+    order: [['createdAt', 'DESC']],
+    limit: 3,
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+  })
     .then(data => {
       res.send(data);
     })
@@ -213,7 +285,19 @@ exports.findNewest = (req, res) => {
 
 // Get Popular News
 exports.getPopularNews = (req, res) => {
-  News.findAll({where: { publish: true }, order: [['views', 'DESC']]})
+  News.findAll({where: { publish: true },
+    order: [['views', 'DESC']],
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+  })
     .then(data => {
       res.send(data);
     })
@@ -291,7 +375,18 @@ exports.deleteAll = (req, res) => {
 
 // find all published News
 exports.findAllPublished = (req, res) => {
-  News.findAll({ where: { publish: true } })
+  News.findAll({ where: { publish: true },
+    include: [
+      {
+        model: Categorys,
+        as: "categories",
+        attributes: ["id", "name"],
+        through: {
+          attributes: [],
+        },
+      },
+    ]
+   })
     .then(data => {
       res.send(data);
     })
