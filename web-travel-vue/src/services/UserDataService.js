@@ -10,8 +10,8 @@ class UserDataService{
     changePassword(data){
         return http.put(USER_BASE_URL+"/change-password", data);
     }
-    delete(id) {
-        return http.delete(USER_BASE_URL+`/id/${id}`);
+    delete() {
+        return http.delete(USER_BASE_URL+"/delete");
     }
 }
 
