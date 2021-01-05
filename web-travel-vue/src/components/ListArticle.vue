@@ -113,7 +113,7 @@ export default {
           news.author.length > 30
             ? news.author.substr(0, 30) + "..."
             : news.author,
-        status: news.published ? "Published" : "Pending",
+        status: news.publish ? "Published" : "Pending",
       };
     },
   },
