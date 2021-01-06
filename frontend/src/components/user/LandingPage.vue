@@ -46,7 +46,7 @@
           >
             <v-card class="mx-auto" max-width="200" style="margin-bottom: 30px">
               <v-img
-                :src="'https://pmperizinan.jogjakota.go.id/upload/kontent/1dcb097adb548963693a34b5fdcc4a6b_Jogja.jpg'"
+                :src="'http://localhost:8082/' + item.pictLink"
                 height="200px"
               ></v-img>
               <v-card-title v-if="(item.isLocation = true)">{{
@@ -154,6 +154,7 @@ export default {
       return {
         name: category.name,
         isLocation: category.isLocation,
+        pictLink: category.pictLink,
         id: category.id,
       };
     },

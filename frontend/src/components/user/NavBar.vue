@@ -61,7 +61,7 @@
 
                   <v-list>
                     <v-list-item
-                      v-for="item in category"
+                      v-for="item in locCategory"
                       :key="item.id"
                       :to="'/newsList/' + item.name"
                     >
@@ -85,7 +85,7 @@
       <v-footer absolute height="auto" color="#aac9c0" dark>
         <v-layout justify-center row wrap>
           <v-flex color="#aac9c0" dark py-3 text-center white--text xs12>
-            Made with tears by Kelompok 4 &copy;2020
+            Made by Kelompok 4-Webdev &copy;2020
           </v-flex>
         </v-layout>
       </v-footer>
