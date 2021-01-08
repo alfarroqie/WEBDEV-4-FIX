@@ -38,22 +38,37 @@
           </div>
         </div>
         <v-layout row>
-          <v-col
-            xl="2"
-            v-for="item in locCategory.slice(0, 10)"
-            :key="item.id"
-            :to="'/newsList/' + item.name"
-          >
-            <v-card class="mx-auto" max-width="200" style="margin-bottom: 30px">
-              <v-img
-                :src="'http://localhost:8082/' + item.pictLink"
-                height="200px"
-              ></v-img>
-              <v-card-title v-if="(item.isLocation = true)">{{
-                item.name
-              }}</v-card-title>
-            </v-card>
-          </v-col>
+          <v-flex>
+            <v-sheet class="mx-auto" max-width="1000">
+              <v-slide-group
+                v-model="model"
+                class="d-flex align-center pa-12"
+                center-active
+                show-arrows
+              >
+                <v-slide-item
+                  v-for="item in locCategory"
+                  :key="item"
+                  class="d-flex align-self-center"
+                >
+                  <v-col>
+                    <v-card
+                      class="mr-12"
+                      height="250"
+                      width="200"
+                      @click="onClick(item.name)"
+                    >
+                      <v-img
+                        :src="'http://localhost:8082/' + item.pictLink"
+                        height="200"
+                      ></v-img>
+                      <v-card-title>{{ item.name }}</v-card-title>
+                    </v-card>
+                  </v-col>
+                </v-slide-item>
+              </v-slide-group>
+            </v-sheet>
+          </v-flex>
         </v-layout>
         <div class="content text-center">
           <h1 style="margin-bottom: 30px">Artikel Baru</h1>
@@ -157,6 +172,9 @@ export default {
         pictLink: category.pictLink,
         id: category.id,
       };
+    },
+    onClick(category) {
+      this.$router.push({ path: "/newsList/" + category });
     },
   },
   computed: {
