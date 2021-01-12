@@ -2,6 +2,13 @@ import http from "../http-common";
 const USER_BASE_URL = "/users"
 
 class UserDataService{
+    create(data) {
+        return http.post(USER_BASE_URL+"/signup", data);
+    }
+
+    getAll(){
+        return http.get(USER_BASE_URL);
+    }
 
     login(data){
         return http.post(USER_BASE_URL+"/login", data);

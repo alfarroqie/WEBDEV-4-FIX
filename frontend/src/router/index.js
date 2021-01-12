@@ -2,10 +2,11 @@ import Vue from "vue";
 import Router from "vue-router";
 import Cms from '../components/admin/Cms.vue';
 import AddCategories from '../components/admin/AddCategories2.vue';
-
+import AddAdmin from '../components/admin/AddAdmin.vue';
 import PostArticle from '../components/admin/PostArticle.vue'
 import ListArticle from '../components/admin/ListArticle.vue'
 import ListCategories from '../components/admin/ListCategories.vue'
+import ListUser from '../components/admin/ListUser.vue'
 import EditArticle from '../components/admin/EditArticle.vue'
 import NavBar from '../components/user/NavBar.vue'
 import News from '../components/user/News.vue'
@@ -44,6 +45,16 @@ const routes = [
                 path: '/admin/listCategories',
                 name: 'ListCategories',
                 component: ListCategories
+            },
+            {
+                path: '/admin/listUser',
+                name: 'ListUser',
+                component: ListUser
+            },
+            {
+                path: '/admin/addAdmin',
+                name: 'AddAdmin',
+                component: AddAdmin
             },
             {
                 path: '/admin/news/:id',
