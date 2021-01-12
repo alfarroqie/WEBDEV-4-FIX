@@ -97,9 +97,12 @@
 <<<<<<< HEAD:web-travel-vue/src/App.vue
 import CategoryService from "./services/CategoryDataService";
 // import UserDataService from "./services/UserDataService"
+<<<<<<< HEAD:frontend/src/components/user/NavBar.vue
 =======
 import CategoryService from "../../services/CategoryDataService";
 >>>>>>> 2935e4a02848fc25e4b1a3a81bee158a5e54c3c3:frontend/src/components/user/NavBar.vue
+=======
+>>>>>>> 2a72e991e2f08cb4a69cde7e393eca7305b999c3:web-travel-vue/src/App.vue
 export default {
   data() {
     return {

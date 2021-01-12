@@ -37,7 +37,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD:frontend/src/components/admin/ListCategories.vue
 <<<<<<< HEAD:web-travel-vue/src/components/ListCategories.vue
+=======
+>>>>>>> 2a72e991e2f08cb4a69cde7e393eca7305b999c3:web-travel-vue/src/components/ListCategories.vue
 import CategoryDataService from "../services/CategoryDataService";
 =======
 import CategoryService from "../../services/CategoryDataService";
@@ -53,12 +56,15 @@ export default {
         { text: "Name", align: "start", sortable: false, value: "name" },
         { text: "Status", value: "status", sortable: false },
         { text: "Actions", value: "actions", sortable: false },
+<<<<<<< HEAD:frontend/src/components/admin/ListCategories.vue
 =======
         { text: "Id", align: "start", sortable: false, value: "id" },
         { text: "Kategori", sortable: false, value: "name" },
         { text: "Jenis", value: "isLocation", sortable: false },
         { text: "Delete", value: "actions", sortable: false },
 >>>>>>> 2935e4a02848fc25e4b1a3a81bee158a5e54c3c3:frontend/src/components/admin/ListCategories.vue
+=======
+>>>>>>> 2a72e991e2f08cb4a69cde7e393eca7305b999c3:web-travel-vue/src/components/ListCategories.vue
       ],
     };
   },
