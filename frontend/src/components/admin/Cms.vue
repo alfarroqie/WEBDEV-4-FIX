@@ -11,6 +11,9 @@
       </div>
       <ul>
         <li>
+          <a @click="onDashboardClick"><i class="fas fa-chart-line"></i>Dashboard</a>
+        </li>
+        <li>
           <a @click="onAddCategoriesClick"><i class="fas fa-chart-line"></i>Add Categories</a>
         </li>
         <li>
@@ -57,6 +60,10 @@ export default {};
 export default{
   name: 'AddCategories',
   methods: {
+    onDashboardClick() {
+      if(this.$route.path !== "/admin/dashboard")
+      this.$router.push("/admin/dashboard");
+    },
     onAddCategoriesClick() {
       if (this.$route.path !== "/admin/addCategories")
         this.$router.push("/admin/addCategories");

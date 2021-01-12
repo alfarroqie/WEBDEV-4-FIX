@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Cms from '../components/admin/Cms.vue';
+import Dashboard from '../components/admin/Dashboard.vue'
 import AddCategories from '../components/admin/AddCategories2.vue';
-
 import PostArticle from '../components/admin/PostArticle.vue'
 import ListArticle from '../components/admin/ListArticle.vue'
 import ListCategories from '../components/admin/ListCategories.vue'
@@ -25,6 +25,11 @@ const routes = [
         path: '/admin',
         component: Cms,
         children: [
+            {
+                path: '/admin/dashboard',
+                name: 'Dashboard',
+                component: Dashboard,
+            },
             {
                 path: '/admin/addCategories',
                 name: 'addCategories',
