@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import NewsDataService from "../../services/NewsDataService";
-import ShareDialog from "./ShareDialog.vue";
+const NewsDataService = () => import("../../services/NewsDataService");
+const ShareDialog = () => import("./ShareDialog.vue");
 export default {
   components: {
     ShareDialog,

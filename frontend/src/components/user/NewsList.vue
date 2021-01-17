@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import NewsDataService from "../../services/NewsDataService";
+const NewsDataService = () => import("../../services/NewsDataService");
 
 export default {
   name: "news-list",
