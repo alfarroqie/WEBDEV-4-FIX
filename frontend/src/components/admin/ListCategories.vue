@@ -37,7 +37,7 @@
 </template>
 
 <script>
-const CategoryService = () => import("../../services/CategoryDataService");
+import CategoryService from "../../services/CategoryDataService";
 export default {
   name: "category-list",
   data() {
@@ -57,11 +57,8 @@ export default {
       CategoryService.getAll()
         .then((response) => {
           this.category = response.data.map(this.getDisplayCategory);
-          console.log(response.data);
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
 
     refreshList() {
@@ -72,11 +69,8 @@ export default {
       CategoryService.findByTitle(this.title)
         .then((response) => {
           this.category = response.data.map(this.getDisplayCategory);
-          console.log(response.data);
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
 
     // editCategory(id) {
@@ -88,9 +82,7 @@ export default {
         .then(() => {
           this.refreshList();
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
 
     getDisplayCategory(category) {

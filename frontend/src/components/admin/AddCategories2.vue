@@ -55,7 +55,8 @@
 
 
 <script>
-const CategoryService = () => import("../../services/CategoryDataService");
+// import NewsDataService from "../../services/NewsDataService";
+import CategoryService from "../../services/CategoryDataService";
 export default {
   data() {
     return {
@@ -73,12 +74,10 @@ export default {
       categoryNew.append("pictLink", this.pictLink);
 
       CategoryService.create(categoryNew)
-        .then((response) => {
-          console.log(response.data);
+        .then(() => {
           this.message = "The category was created successfully!";
         })
-        .catch((e) => {
-          console.log(e);
+        .catch(() => {
           this.message = "Failed to create category";
         });
     },

@@ -79,8 +79,8 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
-const NewsDataService = () => import("../../services/NewsDataService");
-const CategoryService = () => import("../../services/CategoryDataService");
+import NewsDataService from "../../services/NewsDataService";
+import CategoryService from "../../services/CategoryDataService";
 export default {
   components: {
     VueEditor,
@@ -103,9 +103,7 @@ export default {
         .then((response) => {
           this.category = response.data.map(this.mapNewsCategory);
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
     addNews: function () {
       let news = new FormData();
@@ -127,13 +125,10 @@ export default {
       //   pictLink: this.pictLink
       // }
       NewsDataService.create(news)
-        .then((response) => {
-          console.log(response.data);
+        .then(() => {
           this.message = "The news was created successfully!";
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
     mapNewsCategory(category) {
       return {

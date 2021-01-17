@@ -39,7 +39,7 @@
         </div>
         <v-layout row>
           <v-flex>
-            <v-sheet class="mx-auto" max-width="1000">
+            <v-sheet class="mx-auto" min-width="420" max-width="1000">
               <v-slide-group
                 v-model="model"
                 class="d-flex align-center pa-12"
@@ -127,8 +127,8 @@
 </template>
 
 <script>
-const NewsDataService = () => import("../../services/NewsDataService");
-const CategoryService = () => import("../../services/CategoryDataService");
+import NewsDataService from "../../services/NewsDataService";
+import CategoryService from "../../services/CategoryDataService";
 export default {
   name: "news-list",
   data() {
@@ -145,11 +145,8 @@ export default {
       NewsDataService.getAll()
         .then((response) => {
           this.news = response.data;
-          console.log(response.data);
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
 
     setActiveNews(thisNews, index) {
@@ -161,9 +158,7 @@ export default {
         .then((response) => {
           this.category = response.data.map(this.mapNewsCategory);
         })
-        .catch((e) => {
-          console.log(e);
-        });
+        .catch(() => {});
     },
     mapNewsCategory(category) {
       return {
