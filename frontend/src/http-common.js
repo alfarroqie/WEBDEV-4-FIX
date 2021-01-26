@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:8082/api",
+    baseURL: "https://voyagee-travel.herokuapp.com/api",
     headers: {
         "Content-type": "application/json"
     }
