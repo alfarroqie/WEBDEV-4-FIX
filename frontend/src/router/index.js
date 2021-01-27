@@ -87,11 +87,11 @@ export const routes = [
         path: '/',
         component: () => import("../components/user/NavBar.vue"),
         children: [
-            // {
-            //     path: '/',
-            //     name: 'news-list',
-            //     component: () => import("../components/user/LandingPage.vue")
-            // },
+            {
+                path: '/',
+                name: 'news-list',
+                component: () => import("../components/user/LandingPage.vue")
+            },
             {
                 path: '/news',
                 name: 'news-list',
