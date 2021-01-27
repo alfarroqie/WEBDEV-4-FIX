@@ -4,6 +4,9 @@
 		<loc>https://voyagee-newstravel.herokuapp.com/login</loc>
 	</url>
 	<url>
+		<loc>https://voyagee-newstravel.herokuapp.com</loc>
+	</url>
+	<url>
 		<loc>https://voyagee-newstravel.herokuapp.com/news</loc>
 	</url>
 	<url>
@@ -58,7 +61,16 @@
 		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Tips</loc>
 	</url>
 	<url>
+		<loc>https://voyagee-newstravel.herokuapp.com/newsList/tes</loc>
+	</url>
+	<url>
+		<loc>https://voyagee-newstravel.herokuapp.com/newsList/tesKategori</loc>
+	</url>
+	<url>
 		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Jakarta</loc>
+	</url>
+	<url>
+		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Bandung</loc>
 	</url>
 	<url>
 		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Yogyakarta</loc>
@@ -70,15 +82,6 @@
 		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Semarang</loc>
 	</url>
 	<url>
-		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Bandung</loc>
-	</url>
-	<url>
 		<loc>https://voyagee-newstravel.herokuapp.com/newsList/Solo</loc>
-	</url>
-	<url>
-		<loc>https://voyagee-newstravel.herokuapp.com/newsList/tes</loc>
-	</url>
-	<url>
-		<loc>https://voyagee-newstravel.herokuapp.com/newsList/tesKategori</loc>
 	</url>
 </urlset>
